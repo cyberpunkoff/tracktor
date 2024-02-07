@@ -4,20 +4,17 @@ import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.BotCommand;
 import com.pengrad.telegrambot.model.Update;
-import com.pengrad.telegrambot.model.botcommandscope.BotCommandScope;
-import com.pengrad.telegrambot.model.botcommandscope.BotCommandsScopeChat;
 import com.pengrad.telegrambot.request.BaseRequest;
-import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.request.SetMyCommands;
 import edu.java.bot.command.Command;
 import edu.java.bot.configuration.ApplicationConfig;
 import edu.java.bot.message.UserMessageProcessor;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import java.util.List;
 
 @Component
 @Slf4j
