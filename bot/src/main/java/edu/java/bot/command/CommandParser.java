@@ -18,7 +18,7 @@ public final class CommandParser {
         // TODO: add checks for invalid message structure
         return UserMessage.builder()
             .command(parts[0])
-            .arguments(Arrays.copyOfRange(parts, Math.min(1, parts.length - 1), parts.length - 1))
+            .arguments(Arrays.copyOfRange(parts, Math.min(1, parts.length - 1), parts.length))
             .build();
     }
 }
