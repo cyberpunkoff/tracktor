@@ -20,6 +20,10 @@ public final class CommandUtils {
     }
 
     public static String createListMessage(List<String> links) {
+        if (links == null) {
+            return "You haven't added any links yet";
+        }
+
         StringBuilder message = new StringBuilder();
         message.append("Tracking links\n");
         message.append(

@@ -10,13 +10,12 @@ import org.springframework.stereotype.Component;
 public class HelpCommand extends AbstractCommand {
     private final static String COMMAND = "/help";
     public static final String DESCRIPTION = "Prints help message";
-    private final List<? extends AbstractCommand> commands;
     private final String message;
 
     @Autowired
-    HelpCommand(List<? extends AbstractCommand> commands) {
+    HelpCommand(List<AbstractCommand> commands) {
         super(COMMAND, DESCRIPTION);
-        this.commands = commands;
+        commands.add(this);
         this.message = CommandUtils.createHelpMessage(commands);
     }
 
