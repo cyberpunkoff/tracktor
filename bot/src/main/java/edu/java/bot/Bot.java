@@ -1,11 +1,14 @@
 package edu.java.bot;
 
+import com.pengrad.telegrambot.ExceptionHandler;
 import com.pengrad.telegrambot.TelegramBot;
+import com.pengrad.telegrambot.TelegramException;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.BotCommand;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SetMyCommands;
+import com.pengrad.telegrambot.response.BaseResponse;
 import edu.java.bot.command.Command;
 import edu.java.bot.configuration.ApplicationConfig;
 import edu.java.bot.message.UserMessageProcessor;
@@ -18,7 +21,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class Bot implements UpdatesListener, AutoCloseable {
+public class Bot implements UpdatesListener, ExceptionHandler, AutoCloseable {
     private final UserMessageProcessor userMessageProcessor;
     private final ApplicationConfig applicationConfig;
     private TelegramBot bot;
@@ -29,7 +32,7 @@ public class Bot implements UpdatesListener, AutoCloseable {
         this.applicationConfig = applicationConfig;
     }
 
-    void execute(BaseRequest request) {
+    <T extends BaseRequest<T, R>, R extends BaseResponse> void execute(BaseRequest<T, R> request) {
         bot.execute(request);
     }
 
@@ -43,8 +46,9 @@ public class Bot implements UpdatesListener, AutoCloseable {
     @EventListener(ApplicationReadyEvent.class)
     public void start() {
         log.info("Starting telegram bot...");
+
         bot = new TelegramBot(applicationConfig.telegramToken());
-        bot.setUpdatesListener(this);
+        bot.setUpdatesListener(this, this);
 
         SetMyCommands setMyCommands =
             new SetMyCommands(
@@ -55,5 +59,14 @@ public class Bot implements UpdatesListener, AutoCloseable {
     @Override
     public void close() {
         bot.shutdown();
+    }
+
+    @Override
+    public void onException(TelegramException e) {
+        if (e.response() != null) {
+            log.error("Telegram API exception: {} - {}", e.response().errorCode(), e.response().description());
+        } else {
+            log.error(e.toString());
+        }
     }
 }
