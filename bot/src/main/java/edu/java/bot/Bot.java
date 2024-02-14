@@ -38,7 +38,11 @@ public class Bot implements UpdatesListener, ExceptionHandler, AutoCloseable {
 
     @Override
     public int process(List<Update> updates) {
-        updates.stream().map(userMessageProcessor::process).forEach(this::execute);
+        try {
+            updates.stream().map(userMessageProcessor::process).forEach(this::execute);
+        } catch (Exception e) {
+            handleException(e);
+        }
 
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
@@ -63,8 +67,12 @@ public class Bot implements UpdatesListener, ExceptionHandler, AutoCloseable {
 
     @Override
     public void onException(TelegramException e) {
-        if (e.response() != null) {
-            log.error("Telegram API exception: {} - {}", e.response().errorCode(), e.response().description());
+        handleException(e);
+    }
+
+    private void handleException(Exception e) {
+        if (e instanceof TelegramException te && te.response() != null) {
+            log.error("Telegram API exception: {} - {}", te.response().errorCode(), te.response().description());
         } else {
             log.error(e.toString());
         }
