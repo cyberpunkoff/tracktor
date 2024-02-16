@@ -4,16 +4,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Component
-public class StackOverflowClientImpl implements StackOverflowClient {
+public class StackOverflowWebClient implements StackOverflowClient {
     private static final String DEFAULT_BASE_URL = "https://api.stackexchange.com/2.3";
     private static final String QUESTION_ENDPOINT = "/questions/%d?site=stackoverflow";
     private final WebClient webClient;
 
-    public StackOverflowClientImpl() {
+    public StackOverflowWebClient() {
         this(DEFAULT_BASE_URL);
     }
 
-    public StackOverflowClientImpl(String baseUrl) {
+    public StackOverflowWebClient(String baseUrl) {
         this.webClient = WebClient.create(baseUrl);
     }
 
