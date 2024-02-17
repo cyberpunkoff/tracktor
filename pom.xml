@@ -203,7 +203,7 @@
                     <version>${maven-surefire-plugin.version}</version>
                     <configuration>
                         <skip>${skip.unit.tests}</skip>
-                        <argLine>-XX:+EnableDynamicAgentLoading</argLine>
+                        <argLine>@{argLine} -XX:+EnableDynamicAgentLoading</argLine>
                     </configuration>
                 </plugin>
                 <plugin>
