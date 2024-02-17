@@ -34,7 +34,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           min-coverage-overall: 30
           min-coverage-changed-files: 30
-          title: Code Coverage
+          title: New Code Coverage
+          debug-mode: true
           update-comment: true
 
   checkstyle:
