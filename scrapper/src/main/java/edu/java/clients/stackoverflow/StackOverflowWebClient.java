@@ -22,7 +22,7 @@ public class StackOverflowWebClient implements StackOverflowClient {
         return webClient.get()
             .uri(String.format(QUESTION_ENDPOINT, id))
             .retrieve()
-            .bodyToMono(StackOverflowQuestionResponse.class)
-            .block().getItems().getFirst();
+            .bodyToMono(QuestionResponse.class)
+            .block();
     }
 }
