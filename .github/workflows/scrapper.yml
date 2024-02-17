@@ -34,7 +34,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           min-coverage-overall: 30
           min-coverage-changed-files: 30
-          title: Code Coverage
+          title: '## :lobster: Scrapper code coverage'
+          pass-emoji: ':man_technologist:'
+          fail-emoji: ':nauseated_face:'
           update-comment: true
 
   checkstyle:
