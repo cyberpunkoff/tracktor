@@ -7,7 +7,7 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record QuestionResponse(List<ItemResponse> items) {
-    record ItemResponse(
+    public record ItemResponse(
             @JsonProperty("question_id") Long id,
             @JsonProperty("view_count")
             Integer viewCount,
