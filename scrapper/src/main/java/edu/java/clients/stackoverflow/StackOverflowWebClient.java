@@ -16,7 +16,7 @@ public class StackOverflowWebClient implements StackOverflowClient {
     }
 
     @Override
-    public QuestionResponse fetchQuestion(Integer id) {
+    public QuestionResponse fetchQuestion(long id) {
         return webClient.get()
             .uri(QUESTION_ENDPOINT, id)
             .retrieve()
