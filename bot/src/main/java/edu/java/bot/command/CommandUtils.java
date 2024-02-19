@@ -21,7 +21,7 @@ public final class CommandUtils {
     }
 
     public static String createListMessage(List<Link> links) {
-        if (links == null) {
+        if (links == null || links.isEmpty()) {
             return "You haven't added any links yet";
         }
 
