@@ -29,7 +29,7 @@ public class LinkService {
     }
 
     public boolean containsLinkId(Long userId, int linkId) {
-        return linkId >=  0 && linkId < links.get(userId).size();
+        return links.containsKey(userId) && linkId >=  0 && linkId < links.get(userId).size();
     }
 
     public void removeLink(Long userId, String url) {
