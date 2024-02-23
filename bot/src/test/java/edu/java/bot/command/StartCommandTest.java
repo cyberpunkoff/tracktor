@@ -4,8 +4,6 @@ import com.pengrad.telegrambot.model.Chat;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.User;
-import java.util.Arrays;
-import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,27 +12,24 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class HelpCommandTest {
+public class StartCommandTest {
     @Autowired
-    private HelpCommand helpCommand;
+    private StartCommand startCommand;
 
     @Test
-    void helpCommandOutputTest() {
-        Pattern commandDescriptionPattern = Pattern.compile("/[a-zA-Z]* [a-zA-Z ]*");
-
+    void startCommandTest() {
         Update update = mock(Update.class);
         Message message = mock(Message.class);
         User user = mock(User.class);
 
         when(update.message()).thenReturn(message);
-        when(message.text()).thenReturn("/help");
+        when(message.text()).thenReturn("/start");
         when(user.firstName()).thenReturn("Test");
         when(update.message().chat()).thenReturn(new Chat());
         when(update.message().from()).thenReturn(user);
 
-        String[] helpMessageLines = helpCommand.handle(update).getParameters().get("text").toString().split("\n");
-        Arrays.stream(helpMessageLines).skip(1).forEach(
-            line -> assertThat(line).matches(commandDescriptionPattern)
-        );
+        String startCommandMessage = startCommand.handle(update).getParameters().get("text").toString();
+
+        assertThat(startCommandMessage).isEqualTo(StartCommand.MESSAGE);
     }
 }
