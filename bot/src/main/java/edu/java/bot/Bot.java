@@ -9,6 +9,7 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SetMyCommands;
 import com.pengrad.telegrambot.response.BaseResponse;
+import edu.java.bot.command.AbstractCommand;
 import edu.java.bot.command.Command;
 import edu.java.bot.configuration.ApplicationConfig;
 import edu.java.bot.message.UserMessageProcessor;
@@ -22,12 +23,18 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class Bot implements UpdatesListener, ExceptionHandler, AutoCloseable {
+    private final List<? extends AbstractCommand> commands;
     private final UserMessageProcessor userMessageProcessor;
     private final ApplicationConfig applicationConfig;
     private TelegramBot bot;
 
     @Autowired
-    public Bot(UserMessageProcessor userMessageProcessor, ApplicationConfig applicationConfig) {
+    public Bot(
+        List<? extends AbstractCommand> commands,
+        UserMessageProcessor userMessageProcessor,
+        ApplicationConfig applicationConfig
+    ) {
+        this.commands = commands;
         this.userMessageProcessor = userMessageProcessor;
         this.applicationConfig = applicationConfig;
     }
@@ -56,7 +63,7 @@ public class Bot implements UpdatesListener, ExceptionHandler, AutoCloseable {
 
         SetMyCommands setMyCommands =
             new SetMyCommands(
-                userMessageProcessor.getCommands().stream().map(Command::toApiCommand).toArray(BotCommand[]::new));
+                this.commands.stream().map(Command::toApiCommand).toArray(BotCommand[]::new));
         execute(setMyCommands);
     }
 

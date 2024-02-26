@@ -1,32 +1,24 @@
 package edu.java.bot.command;
 
-import com.pengrad.telegrambot.model.Chat;
-import com.pengrad.telegrambot.model.Message;
-import com.pengrad.telegrambot.model.Update;
-import com.pengrad.telegrambot.model.User;
+import edu.java.bot.service.LinkService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
-public class ListCommandTest {
-    @Autowired
+@ExtendWith(MockitoExtension.class)
+public class ListCommandTest extends AbstractCommandTest {
+    @InjectMocks
     private ListCommand listCommand;
+    @Mock
+    private LinkService linkService;
 
     @Test
     void testNoLinksTrackedMessage() {
-        Update update = mock(Update.class);
-        Message message = mock(Message.class);
-        User user = mock(User.class);
-
-        when(update.message()).thenReturn(message);
         when(message.text()).thenReturn("/track");
-        when(user.firstName()).thenReturn("Test");
-        when(update.message().chat()).thenReturn(new Chat());
-        when(update.message().from()).thenReturn(user);
 
         String startCommandMessage = listCommand.handle(update).getParameters().get("text").toString();
 
