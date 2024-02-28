@@ -2,6 +2,7 @@ package edu.java.model.exception;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
+import java.util.List;
 
 @Builder
 public record ApiErrorResponse(
@@ -14,6 +15,6 @@ public record ApiErrorResponse(
     @Schema(name = "exceptionMessage", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     String exceptionMessage,
     @Schema(name = "stacktrace", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    String[] stacktrace
+    List<String> stacktrace
 ) {
 }

@@ -1,6 +1,7 @@
-package edu.java.bot.model.exception;
+package edu.java.bot.model.exceptions;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.List;
 import lombok.Builder;
 
 @Builder
@@ -14,6 +15,6 @@ public record ApiErrorResponse(
     @Schema(name = "exceptionMessage", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     String exceptionMessage,
     @Schema(name = "stacktrace", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    String[] stacktrace
+    List<String> stacktrace
 ) {
 }
