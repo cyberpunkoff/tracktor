@@ -1,6 +1,6 @@
 package edu.java.bot.controller;
 
-import edu.java.bot.model.exception.ApiErrorResponse;
+import edu.java.bot.model.exceptions.ApiErrorResponse;
 import java.util.Arrays;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,7 @@ public class RestControllerAdvice {
                 .code(String.valueOf(HttpStatus.BAD_REQUEST.value()))
                 .exceptionName(exception.getClass().getSimpleName())
                 .exceptionMessage(exception.getDetailMessageCode())
-                .stacktrace(Arrays.stream(exception.getStackTrace()).map(StackTraceElement::toString)
-                    .toArray(String[]::new))
+                .stacktrace(Arrays.stream(exception.getStackTrace()).map(StackTraceElement::toString).toList())
                 .build());
     }
 }
