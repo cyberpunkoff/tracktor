@@ -1,22 +1,26 @@
 package edu.java.bot.controller;
 
 import edu.java.bot.model.LinkUpdateRequest;
-import edu.java.bot.model.exception.ApiErrorResponse;
+import edu.java.bot.model.exceptions.ApiErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Validated
+@Tag(name = "updates", description = "the updates API")
 @RestController
 @RequestMapping("/updates")
 @RequiredArgsConstructor
@@ -33,7 +37,7 @@ public class UpdatesController {
         }
     )
     @PostMapping
-    public ResponseEntity<Void> updatesPost(
+    public ResponseEntity<Void> sendUpdates(
         @Parameter(name = "LinkUpdateRequest", required = true)
         @Valid
         @RequestBody
