@@ -1,4 +1,4 @@
-package edu.java.bot.model.exceptions;
+package edu.java.model.controller.exceptions;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
