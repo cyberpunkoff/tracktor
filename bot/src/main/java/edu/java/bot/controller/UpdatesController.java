@@ -1,7 +1,7 @@
 package edu.java.bot.controller;
 
-import edu.java.bot.model.LinkUpdateRequest;
-import edu.java.bot.model.exceptions.ApiErrorResponse;
+import edu.java.bot.model.controller.LinkUpdateRequest;
+import edu.java.bot.model.controller.exceptions.ApiErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

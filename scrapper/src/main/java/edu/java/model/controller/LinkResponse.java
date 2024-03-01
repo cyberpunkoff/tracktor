@@ -1,4 +1,4 @@
-package edu.java.model;
+package edu.java.model.controller;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.net.URI;
