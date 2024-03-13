@@ -61,6 +61,10 @@ public interface LinkDao {
 
     Link get(Long id);
 
+    void updateCheckedAt(URI url, Timestamp timestamp);
+
+    void updateUpdatedAt(URI url, Timestamp timestamp);
+
     Link get(URI url);
 
     Link remove(URI url, Long id);

@@ -9,6 +9,8 @@ public class LinkUpdaterService implements LinkUpdater {
     public int update(LinkUpdateRequest linkUpdateRequest) {
         linkUpdateRequest.tgChatIds().stream().forEach(send message);
 
+        // send all notifications to users here, may be add new sender class
+
         return linkUpdateRequest.tgChatIds().size();
     }
 }

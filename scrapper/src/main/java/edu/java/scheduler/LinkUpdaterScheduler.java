@@ -22,6 +22,10 @@ public class LinkUpdaterScheduler {
         log.info("Updated!");
         List<Link> toUpdate = linkRepository.findAllCheckedLaterThan(applicationConfig.scheduler().forceCheckDelay());
 
+
+        // update link checked at and updated at there
+        // then send notification to bot
+
         for (Link link : toUpdate) {
             log.info(String.valueOf(link.getUrl()));
         }
