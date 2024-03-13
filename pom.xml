@@ -59,7 +59,7 @@
             </dependency>
             <dependency>
                 <groupId>org.wiremock</groupId>
-                <artifactId>wiremock</artifactId>
+                <artifactId>wiremock-standalone</artifactId>
                 <version>${wiremock.version}</version>
             </dependency>
 
@@ -203,6 +203,7 @@
                     <version>${maven-surefire-plugin.version}</version>
                     <configuration>
                         <skip>${skip.unit.tests}</skip>
+                        <argLine>@{argLine} -XX:+EnableDynamicAgentLoading</argLine>
                     </configuration>
                 </plugin>
                 <plugin>
