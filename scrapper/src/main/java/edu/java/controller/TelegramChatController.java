@@ -1,6 +1,7 @@
 package edu.java.controller;
 
 import edu.java.model.controller.exceptions.ApiErrorResponse;
+import edu.java.service.TelegramChatService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -22,6 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/tg-chat")
 public class TelegramChatController {
+    private final TelegramChatService telegramChatService;
+
+    public TelegramChatController(TelegramChatService telegramChatService) {
+        this.telegramChatService = telegramChatService;
+    }
+
     @Operation(
         operationId = "tgChatIdPost",
         summary = "Зарегистрировать чат",
@@ -38,7 +45,9 @@ public class TelegramChatController {
         @PathVariable
         Long id
     ) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        telegramChatService.register(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+//        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @DeleteMapping("/{id}")
@@ -47,7 +56,8 @@ public class TelegramChatController {
         @PathVariable
         Long id
     ) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        telegramChatService.unregister(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

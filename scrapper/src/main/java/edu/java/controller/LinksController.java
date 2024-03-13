@@ -1,10 +1,13 @@
 package edu.java.controller;
 
+import edu.java.dto.Link;
 import edu.java.model.controller.AddLinkRequest;
 import edu.java.model.controller.LinkResponse;
 import edu.java.model.controller.ListLinksResponse;
 import edu.java.model.controller.RemoveLinkRequest;
 import edu.java.model.controller.exceptions.ApiErrorResponse;
+import edu.java.service.LinkService;
+import edu.java.service.jdbc.JdbcLinkService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -24,12 +27,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @Validated
 @Tag(name = "links", description = "the links API")
 @RestController
 @RequestMapping("/links")
 public class LinksController {
+    private final LinkService linkService;
+
+    public LinksController(LinkService linkService) {
+        this.linkService = linkService;
+    }
+
     @Operation(
         operationId = "linksGet",
         summary = "Получить все отслеживаемые ссылки",
@@ -49,7 +59,12 @@ public class LinksController {
         @RequestHeader("Tg-Chat-Id")
         Long tgChatId
     ) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+        List<Link> links = linkService.listAll(tgChatId);
+        ListLinksResponse response = new ListLinksResponse(links.stream()
+            .map(e -> new LinkResponse(Integer.parseInt(e.getId().toString()), e.getUrl())).toList(), links.size());
+//        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Operation(
@@ -75,7 +90,11 @@ public class LinksController {
         @RequestBody
         AddLinkRequest addLinkRequest
     ) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        // TODO: check how to use mappers
+        Link link = linkService.add(tgChatId, addLinkRequest.link());
+        LinkResponse response = new LinkResponse(Math.toIntExact(link.getId()), link.getUrl());
+        return new ResponseEntity<>(response, HttpStatus.OK);
+//        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @Operation(
@@ -104,6 +123,11 @@ public class LinksController {
         @RequestBody
         RemoveLinkRequest removeLinkRequest
     ) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+//        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        Link link = linkService.remove(tgChatId, removeLinkRequest.request());
+
+        LinkResponse response = new LinkResponse(Math.toIntExact(link.getId()), link.getUrl());
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
