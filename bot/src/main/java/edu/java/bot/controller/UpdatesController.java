@@ -2,6 +2,7 @@ package edu.java.bot.controller;
 
 import edu.java.bot.model.controller.LinkUpdateRequest;
 import edu.java.bot.model.controller.exceptions.ApiErrorResponse;
+import edu.java.bot.service.LinkUpdater;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -26,6 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Slf4j
 public class UpdatesController {
+    private final LinkUpdater linkUpdaterService;
+
     @Operation(
         operationId = "updatesPost",
         summary = "Отправить обновление",
