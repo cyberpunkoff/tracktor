@@ -32,3 +32,8 @@ build/
 .vscode/
 
 .DS_Store
+
+.env
+/tgbot.tar
+/bot/Dockerfile
+/deploy.sh

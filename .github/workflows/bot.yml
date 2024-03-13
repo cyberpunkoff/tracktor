@@ -2,7 +2,7 @@ name: Bot Build
 
 on:
   workflow_dispatch:
-  push:
+  pull_request:
     paths:
       - .github/workflows/bot.yml
       - bot/**
@@ -13,6 +13,7 @@ jobs:
     name: Build
     permissions:
       packages: write
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +34,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           min-coverage-overall: 30
           min-coverage-changed-files: 30
-          title: Code Coverage
+          title: '## :robot: Bot code coverage'
+          pass-emoji: ':fire:'
+          fail-emoji: ':see_no_evil:'
           update-comment: true
 
   checkstyle:
