@@ -1,6 +1,6 @@
 package edu.java.bot.command;
 
-import edu.java.bot.link.links.Link;
+import edu.link.links.Link;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

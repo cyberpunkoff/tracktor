@@ -1,4 +1,4 @@
-package edu.java.bot.link.links;
+package edu.link.links;
 
 public class GitHubLink extends Link {
     private String userName;

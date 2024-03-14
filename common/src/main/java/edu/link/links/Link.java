@@ -1,7 +1,8 @@
-package edu.java.bot.link.links;
+package edu.link.links;
 
-import edu.java.bot.link.parsers.GitHubLinkParser;
-import edu.java.bot.link.parsers.StackOverflowLinkParser;
+import edu.link.parsers.GitHubLinkParser;
+import edu.link.parsers.StackOverflowLinkParser;
+
 import java.util.Objects;
 
 public abstract class Link {

@@ -1,7 +1,6 @@
 package edu.java.bot.service;
 
-import edu.java.bot.link.links.GitHubLink;
-import edu.java.bot.service.LinkService;
+import edu.link.links.GitHubLink;
 import org.junit.Test;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;

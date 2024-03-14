@@ -1,6 +1,6 @@
 package edu.java.bot.service;
 
-import edu.java.bot.link.links.Link;
+import edu.link.links.Link;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
