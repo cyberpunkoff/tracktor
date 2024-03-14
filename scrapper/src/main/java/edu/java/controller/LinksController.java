@@ -5,7 +5,7 @@ import edu.java.ApiErrorResponse;
 import edu.java.LinkResponse;
 import edu.java.ListLinksResponse;
 import edu.java.RemoveLinkRequest;
-import edu.java.dto.Link;
+import edu.java.dto.LinkDto;
 import edu.java.service.LinkService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -59,9 +59,9 @@ public class LinksController {
         Long tgChatId
     ) {
 
-        List<Link> links = linkService.listAll(tgChatId);
-        ListLinksResponse response = new ListLinksResponse(links.stream()
-            .map(e -> new LinkResponse(Integer.parseInt(e.getId().toString()), e.getUrl())).toList(), links.size());
+        List<LinkDto> linkDtos = linkService.listAll(tgChatId);
+        ListLinksResponse response = new ListLinksResponse(linkDtos.stream()
+            .map(e -> new LinkResponse(Integer.parseInt(e.getId().toString()), e.getUrl())).toList(), linkDtos.size());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -89,8 +89,8 @@ public class LinksController {
         AddLinkRequest addLinkRequest
     ) {
         // TODO: check how to use mappers
-        Link link = linkService.add(tgChatId, addLinkRequest.link());
-        LinkResponse response = new LinkResponse(Math.toIntExact(link.getId()), link.getUrl());
+        LinkDto linkDto = linkService.add(tgChatId, addLinkRequest.link());
+        LinkResponse response = new LinkResponse(Math.toIntExact(linkDto.getId()), linkDto.getUrl());
         return new ResponseEntity<>(response, HttpStatus.OK);
 //        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
@@ -122,9 +122,9 @@ public class LinksController {
         RemoveLinkRequest removeLinkRequest
     ) {
 //        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-        Link link = linkService.remove(tgChatId, removeLinkRequest.request());
+        LinkDto linkDto = linkService.remove(tgChatId, removeLinkRequest.request());
 
-        LinkResponse response = new LinkResponse(Math.toIntExact(link.getId()), link.getUrl());
+        LinkResponse response = new LinkResponse(Math.toIntExact(linkDto.getId()), linkDto.getUrl());
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

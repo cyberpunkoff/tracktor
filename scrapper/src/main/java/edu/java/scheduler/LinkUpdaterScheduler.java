@@ -1,8 +1,10 @@
 package edu.java.scheduler;
 
+import edu.java.LinkUpdateRequest;
+import edu.java.clients.bot.BotClient;
 import edu.java.configuration.ApplicationConfig;
-import edu.java.dto.Link;
-import edu.java.repository.LinkDao;
+import edu.java.dto.LinkDto;
+import edu.java.service.LinkService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 public class LinkUpdaterScheduler {
-    private final LinkDao linkRepository;
+    private final LinkService linkService;
+    private final BotClient botClient;
+    private final LinkUpdaterService linkUpdaterService;
     private final ApplicationConfig.Scheduler scheduler;
 
     @Scheduled(fixedDelayString = "#{@scheduler.interval()}")
@@ -22,14 +26,9 @@ public class LinkUpdaterScheduler {
             return;
         }
 
-        log.info("Updated!");
-        List<Link> toUpdate = linkRepository.findAllCheckedLaterThan(scheduler.forceCheckDelay());
-
-        // update link checked at and updated at there
-        // then send notification to bot
-
-        for (Link link : toUpdate) {
-            log.info(String.valueOf(link.getUrl()));
-        }
+        log.info("Updating links...");
+        List<LinkDto> linksToUpdate = linkService.listAllCheckedLaterThan(scheduler.forceCheckDelay());
+        List<LinkUpdateRequest> updatesToSend = linkUpdaterService.createLinkUpdateRequests(linksToUpdate);
+        updatesToSend.forEach(botClient::sendUpdate);
     }
 }

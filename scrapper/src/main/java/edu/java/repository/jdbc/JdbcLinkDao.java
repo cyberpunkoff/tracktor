@@ -1,8 +1,9 @@
 package edu.java.repository.jdbc;
 
-import edu.java.dto.Link;
+import edu.java.dto.LinkDto;
 import edu.java.repository.LinkDao;
 import java.net.URI;
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +29,7 @@ public class JdbcLinkDao implements LinkDao {
     }
 
     @Override
-    public List<Link> findAll(Long tgChatId) {
+    public List<LinkDto> findAll(Long tgChatId) {
         return jdbcTemplate.query(
             GET_LINKS_QUERY
             + " WHERE chats.chat_id = ?",
@@ -38,7 +39,7 @@ public class JdbcLinkDao implements LinkDao {
     }
 
     @Override
-    public List<Link> findAllCheckedLaterThan(Duration duration) {
+    public List<LinkDto> findAllCheckedLaterThan(Duration duration) {
         return jdbcTemplate.query(
             GET_LINKS_OLDER_THAN_QUERY,
             SET_EXTRACTOR,
@@ -47,28 +48,38 @@ public class JdbcLinkDao implements LinkDao {
     }
 
     @Override
-    public Link add(URI url, Long chatId) {
+    public LinkDto add(URI url, Long chatId) {
         // TODO: add unique link checks
-        Link link = jdbcTemplate.query("insert into links (url) values (?) RETURNING *", ROW_MAPPER, url.toString())
+        LinkDto linkDto = jdbcTemplate.query("insert into links (url) values (?) RETURNING *", ROW_MAPPER, url.toString())
             .getFirst();
 
         jdbcTemplate.update(
             "insert into chats_links (chat_id, link_id) values (?, ?)",
             chatId,
-            link.getId()
+            linkDto.getId()
         );
 
-        return this.get(link.getId());
+        return this.get(linkDto.getId());
     }
 
     @Override
-    public Link get(Long id) {
+    public LinkDto get(Long id) {
         return Objects.requireNonNull(jdbcTemplate.query(GET_LINKS_QUERY + " WHERE links.id = ?", SET_EXTRACTOR, id))
             .getFirst();
     }
 
     @Override
-    public Link get(URI url) {
+    public void updateCheckedAt(URI url, Timestamp timestamp) {
+
+    }
+
+    @Override
+    public void updateUpdatedAt(URI url, Timestamp timestamp) {
+
+    }
+
+    @Override
+    public LinkDto get(URI url) {
         return Objects.requireNonNull(jdbcTemplate.query(
                 GET_LINKS_QUERY + " WHERE links.url = ?",
                 SET_EXTRACTOR,
@@ -78,8 +89,8 @@ public class JdbcLinkDao implements LinkDao {
     }
 
     @Override
-    public Link remove(URI url, Long chatId) {
-        Link link = this.get(url);
+    public LinkDto remove(URI url, Long chatId) {
+        LinkDto linkDto = this.get(url);
 
         jdbcTemplate.update(
             "delete from chats_links where chat_id = ? and link_id = ?",
@@ -89,6 +100,6 @@ public class JdbcLinkDao implements LinkDao {
 
         jdbcTemplate.update("delete from links where url = ?", url.toString());
 
-        return link;
+        return linkDto;
     }
 }

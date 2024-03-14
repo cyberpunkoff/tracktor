@@ -1,7 +1,7 @@
 package edu.java.repository;
 
 import edu.java.dto.Chat;
-import edu.java.dto.Link;
+import edu.java.dto.LinkDto;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.ResultSet;
@@ -15,8 +15,8 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 public interface LinkDao {
-    ResultSetExtractor<List<Link>> SET_EXTRACTOR = (ResultSet resultSet) -> {
-        Map<Long, Link> linkById = new HashMap<>();
+    ResultSetExtractor<List<LinkDto>> SET_EXTRACTOR = (ResultSet resultSet) -> {
+        Map<Long, LinkDto> linkById = new HashMap<>();
 
         while (resultSet.next()) {
             Long chatId = resultSet.getLong("chat_id");
@@ -31,15 +31,15 @@ public interface LinkDao {
                 throw new RuntimeException(e);
             }
 
-            Link link = linkById.computeIfAbsent(id, k -> new Link(id, url, updatedAt, checkedAt));
+            LinkDto linkDto = linkById.computeIfAbsent(id, k -> new LinkDto(id, url, updatedAt, checkedAt));
 
-            link.getTrackedBy().add(new Chat(chatId));
+            linkDto.getTrackedBy().add(new Chat(chatId));
         }
 
         return new ArrayList<>(linkById.values());
     };
 
-    RowMapper<Link> ROW_MAPPER = (ResultSet resultSet, int rowNum) -> {
+    RowMapper<LinkDto> ROW_MAPPER = (ResultSet resultSet, int rowNum) -> {
         Long id = resultSet.getLong("id");
         Timestamp updatedAt = resultSet.getTimestamp("updated_at");
         Timestamp checkedAt = resultSet.getTimestamp("checked_at");
@@ -50,22 +50,22 @@ public interface LinkDao {
             throw new RuntimeException(e);
         }
 
-        return new Link(id, url, updatedAt, checkedAt);
+        return new LinkDto(id, url, updatedAt, checkedAt);
     };
 
-    List<Link> findAll(Long tgChatId);
+    List<LinkDto> findAll(Long tgChatId);
 
-    List<Link> findAllCheckedLaterThan(Duration duration);
+    List<LinkDto> findAllCheckedLaterThan(Duration duration);
 
-    Link add(URI url, Long chatId);
+    LinkDto add(URI url, Long chatId);
 
-    Link get(Long id);
+    LinkDto get(Long id);
 
     void updateCheckedAt(URI url, Timestamp timestamp);
 
     void updateUpdatedAt(URI url, Timestamp timestamp);
 
-    Link get(URI url);
+    LinkDto get(URI url);
 
-    Link remove(URI url, Long id);
+    LinkDto remove(URI url, Long id);
 }

@@ -1,14 +1,21 @@
 package edu.java.service;
 
-import edu.java.dto.Link;
+import edu.java.dto.LinkDto;
 import java.net.URI;
-import java.util.Collection;
+import java.sql.Timestamp;
+import java.time.Duration;
 import java.util.List;
 
 public interface LinkService {
-    Link add(long tgChatId, URI url);
+    LinkDto add(long tgChatId, URI url);
 
-    Link remove(long tgChatId, URI url);
+    LinkDto remove(long tgChatId, URI url);
 
-    List<Link> listAll(long tgChatId);
+    List<LinkDto> listAllCheckedLaterThan(Duration duration);
+
+    void updateCheckedAt(URI url, Timestamp timestamp);
+
+    void updateUpdatedAt(URI url, Timestamp timestamp);
+
+    List<LinkDto> listAll(long tgChatId);
 }

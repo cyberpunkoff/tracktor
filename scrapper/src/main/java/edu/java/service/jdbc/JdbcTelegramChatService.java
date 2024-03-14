@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 public class JdbcTelegramChatService implements TelegramChatService {
     private final ChatDao chatRepository;
 
-
     @Override
     public void register(long tgChatId) {
         chatRepository.add(new Chat(tgChatId));
