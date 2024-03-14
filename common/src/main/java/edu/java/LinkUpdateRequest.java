@@ -1,4 +1,4 @@
-package edu.java.bot.model.controller;
+package edu.java;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;

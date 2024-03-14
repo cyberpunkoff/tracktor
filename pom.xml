@@ -50,6 +50,7 @@
     <modules>
         <module>bot</module>
         <module>scrapper</module>
+        <module>common</module>
     </modules>
 
     <dependencyManagement>

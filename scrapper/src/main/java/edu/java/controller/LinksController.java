@@ -1,13 +1,12 @@
 package edu.java.controller;
 
+import edu.java.AddLinkRequest;
+import edu.java.ApiErrorResponse;
+import edu.java.LinkResponse;
+import edu.java.ListLinksResponse;
+import edu.java.RemoveLinkRequest;
 import edu.java.dto.Link;
-import edu.java.model.controller.AddLinkRequest;
-import edu.java.model.controller.LinkResponse;
-import edu.java.model.controller.ListLinksResponse;
-import edu.java.model.controller.RemoveLinkRequest;
-import edu.java.model.controller.exceptions.ApiErrorResponse;
 import edu.java.service.LinkService;
-import edu.java.service.jdbc.JdbcLinkService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -17,6 +16,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
 
 @Validated
 @Tag(name = "links", description = "the links API")
@@ -63,7 +62,6 @@ public class LinksController {
         List<Link> links = linkService.listAll(tgChatId);
         ListLinksResponse response = new ListLinksResponse(links.stream()
             .map(e -> new LinkResponse(Integer.parseInt(e.getId().toString()), e.getUrl())).toList(), links.size());
-//        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

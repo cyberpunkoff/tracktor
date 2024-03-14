@@ -1,9 +1,9 @@
 package edu.java.controller;
 
+import edu.java.ApiErrorResponse;
 import edu.java.exceptions.ChatAlreadyRegisteredException;
 import edu.java.exceptions.LinkAlreadyExistsException;
 import edu.java.exceptions.NoSuchChatException;
-import edu.java.model.controller.exceptions.ApiErrorResponse;
 import java.util.Arrays;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
 package edu.java.bot.service;
 
-import edu.java.bot.model.controller.LinkUpdateRequest;
+import edu.java.LinkUpdateRequest;
 import org.springframework.stereotype.Service;
 
 @Service

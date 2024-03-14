@@ -1,6 +1,6 @@
 package edu.java.controller;
 
-import edu.java.model.controller.exceptions.ApiErrorResponse;
+import edu.java.ApiErrorResponse;
 import edu.java.service.TelegramChatService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

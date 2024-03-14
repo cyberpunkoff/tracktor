@@ -1,6 +1,6 @@
 package edu.java.clients.bot;
 
-import edu.java.model.client.LinkUpdateRequest;
+import edu.java.LinkUpdateRequest;
 import org.springframework.web.reactive.function.client.WebClient;
 
 public class WebClientBotClient implements BotClient {
