@@ -14,14 +14,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class LinkUpdaterScheduler {
     private final LinkDao linkRepository;
-    private final ApplicationConfig applicationConfig;
+    private final ApplicationConfig.Scheduler scheduler;
 
-    // TODO: написать получше (использовать короткое имя bean'а)
-    @Scheduled(fixedDelayString = "#{@'app-edu.java.configuration.ApplicationConfig'.scheduler().interval()}")
+    @Scheduled(fixedDelayString = "#{@scheduler.interval()}")
     public void update() {
-        log.info("Updated!");
-        List<Link> toUpdate = linkRepository.findAllCheckedLaterThan(applicationConfig.scheduler().forceCheckDelay());
+        if (!scheduler.enable()) {
+            return;
+        }
 
+        log.info("Updated!");
+        List<Link> toUpdate = linkRepository.findAllCheckedLaterThan(scheduler.forceCheckDelay());
 
         // update link checked at and updated at there
         // then send notification to bot
