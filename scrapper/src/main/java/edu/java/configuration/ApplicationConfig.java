@@ -19,7 +19,7 @@ public record ApplicationConfig(
     }
 
     public record Client(GitHub gitHub, StackOverflow stackOverflow) {
-        public record GitHub(String baseUrl) {
+        public record GitHub(String baseUrl, String token) {
         }
 
         public record StackOverflow(String baseUrl) {

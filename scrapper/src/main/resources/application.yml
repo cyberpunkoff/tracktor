@@ -2,6 +2,7 @@ app:
   client:
     git-hub:
       base-url: https://api.github.com
+      token: ${GITHUB_TOKEN}
     stack-overflow:
       base-url: https://api.stackexchange.com/2.3
 
@@ -13,6 +14,8 @@ app:
 spring:
   application:
     name: scrapper
+  config:
+    import: optional:file:.env[.properties]
 
   datasource:
     url: jdbc:postgresql://localhost:5432/scrapper
