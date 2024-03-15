@@ -46,6 +46,7 @@ public class UpdatesController {
         @RequestBody
         LinkUpdateRequest linkUpdateRequest
     ) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        linkUpdaterService.update(linkUpdateRequest);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -2,19 +2,22 @@ package edu.java.bot.command;
 
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
+import edu.java.bot.clients.scrapper.ScrapperClient;
 import edu.java.bot.model.UserMessage;
 import edu.java.bot.service.LinkService;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UntrackCommand extends AbstractCommand {
+    private final ScrapperClient scrapperClient;
     public static final String COMMAND = "/untrack";
     public static final String DESCRIPTION = "Removes link from track list";
 
     private final LinkService linkService;
 
-    UntrackCommand(LinkService linkService) {
+    UntrackCommand(ScrapperClient scrapperClient, LinkService linkService) {
         super(COMMAND, DESCRIPTION);
+        this.scrapperClient = scrapperClient;
         this.linkService = linkService;
     }
 

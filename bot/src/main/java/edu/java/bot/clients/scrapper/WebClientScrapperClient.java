@@ -1,12 +1,14 @@
 package edu.java.bot.clients.scrapper;
 
-import edu.java.bot.model.client.AddLinkRequest;
-import edu.java.bot.model.client.LinkResponse;
-import edu.java.bot.model.client.ListLinksResponse;
-import edu.java.bot.model.client.RemoveLinkRequest;
+import edu.java.AddLinkRequest;
+import edu.java.LinkResponse;
+import edu.java.ListLinksResponse;
+import edu.java.RemoveLinkRequest;
 import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+@Component
 public class WebClientScrapperClient implements ScrapperClient {
     private final static String DEFAULT_BASE_URL = "http://127.0.0.1:8080";
     private final static String LINK_ENDPOINT = "/links";

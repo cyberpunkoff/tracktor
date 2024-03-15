@@ -1,7 +1,7 @@
 package edu.java.bot.controller;
 
+import edu.java.ApiErrorResponse;
 import edu.java.bot.exceptions.NoSuchChatException;
-import edu.java.bot.model.controller.exceptions.ApiErrorResponse;
 import java.util.Arrays;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
