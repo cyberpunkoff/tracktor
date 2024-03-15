@@ -4,6 +4,7 @@ import edu.java.dto.LinkDto;
 import java.net.URI;
 import java.sql.Timestamp;
 import java.time.Duration;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 public interface LinkService {
@@ -13,9 +14,9 @@ public interface LinkService {
 
     List<LinkDto> listAllCheckedLaterThan(Duration duration);
 
-    void updateCheckedAt(URI url, Timestamp timestamp);
+    void updateCheckedAt(URI url, OffsetDateTime timestamp);
 
-    void updateUpdatedAt(URI url, Timestamp timestamp);
+    void updateUpdatedAt(URI url, OffsetDateTime timestamp);
 
     List<LinkDto> listAll(long tgChatId);
 }

@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.time.Duration;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,9 +62,9 @@ public interface LinkDao {
 
     LinkDto get(Long id);
 
-    void updateCheckedAt(URI url, Timestamp timestamp);
+    void updateCheckedAt(URI url, OffsetDateTime timestamp);
 
-    void updateUpdatedAt(URI url, Timestamp timestamp);
+    void updateUpdatedAt(URI url, OffsetDateTime timestamp);
 
     LinkDto get(URI url);
 

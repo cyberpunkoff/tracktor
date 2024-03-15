@@ -28,7 +28,8 @@ public class LinkUpdaterScheduler {
 
         log.info("Updating links...");
         List<LinkDto> linksToUpdate = linkService.listAllCheckedLaterThan(scheduler.forceCheckDelay());
-        List<LinkUpdateRequest> updatesToSend = linkUpdaterService.createLinkUpdateRequests(linksToUpdate);
+        List<LinkDto> updatedLinks = linkUpdaterService.updateLinks(linksToUpdate);
+        List<LinkUpdateRequest> updatesToSend = linkUpdaterService.createLinkUpdateRequests(updatedLinks);
         updatesToSend.forEach(botClient::sendUpdate);
     }
 }

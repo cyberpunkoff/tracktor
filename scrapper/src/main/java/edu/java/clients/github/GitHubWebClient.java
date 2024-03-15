@@ -17,6 +17,7 @@ public class GitHubWebClient implements GitHubClient {
 
     @Override
     public RepositoryResponse fetch(String owner, String repo) {
+        // TODO: add token for personal use
         return webClient.get()
             .uri(REPOSITORY_ENDPOINT, owner, repo)
             .retrieve()

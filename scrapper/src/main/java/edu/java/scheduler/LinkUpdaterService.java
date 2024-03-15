@@ -7,40 +7,47 @@ import edu.java.clients.stackoverflow.QuestionResponse;
 import edu.java.clients.stackoverflow.StackOverflowClient;
 import edu.java.dto.Chat;
 import edu.java.dto.LinkDto;
-import edu.java.repository.LinkDao;
 import edu.java.service.LinkService;
-import java.sql.Timestamp;
-import java.time.Instant;
+import edu.link.links.GitHubLink;
+import edu.link.links.Link;
+import edu.link.links.StackOverflowLink;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class LinkUpdaterService {
-    private final LinkDao linkRepository;
     private final GitHubClient gitHubClient;
     private final LinkService linkService;
     private final StackOverflowClient stackOverflowClient;
 
-    public List<LinkDto> getUpdatedLinks(List<LinkDto> linksToUpdate) {
+    public List<LinkDto> updateLinks(List<LinkDto> linksToUpdate) {
         List<LinkDto> updatedLinks = new ArrayList<>();
 
         for (LinkDto linkDto : linksToUpdate) {
-            LinkDto link = LinkDto.parse(linkDto.getUrl().toString());
+            Link link = Link.parse(linkDto.getUrl().toString());
 
-            Timestamp newUpdatedAt = null;
+            OffsetDateTime newUpdatedAt = null;
             if (link instanceof GitHubLink gitHubLink) {
                 RepositoryResponse repositoryResponse =
-                    gitHubClient.fetch(gitHubLink.getUser(), gitHubLink.getRepository());
-                newUpdatedAt = Timestamp.from(Instant.from(repositoryResponse.updatedAt()));
+                    gitHubClient.fetch(gitHubLink.getUserName(), gitHubLink.getRepoName());
+                newUpdatedAt = repositoryResponse.updatedAt();
             } else if (link instanceof StackOverflowLink stackOverflowLink) {
-                QuestionResponse questionResponse = stackOverflowClient.fetchQuestion(stackOverflowLink.getId());
-                newUpdatedAt = Timestamp.from(Instant.from(questionResponse.items().getFirst().lastActivityDate()));
+                QuestionResponse questionResponse =
+                    stackOverflowClient.fetchQuestion(stackOverflowLink.getQuestionId());
+                newUpdatedAt = questionResponse.items().getFirst().lastActivityDate();
             }
 
-            if (newUpdatedAt.after(linkDto.getUpdatedAt())) {
+            OffsetDateTime oldUpdatedAt = linkDto.getUpdatedAt().toInstant().atOffset(newUpdatedAt.getOffset());
+
+            log.debug("Old updatedAt={}, new updatedAt={}", oldUpdatedAt, newUpdatedAt);
+
+            if (newUpdatedAt.isAfter(oldUpdatedAt)) {
                 linkService.updateUpdatedAt(linkDto.getUrl(), newUpdatedAt);
                 // TODO: may be I have to update it there; but idk
                 // TODO: like in repository to make url have last update time
@@ -48,7 +55,7 @@ public class LinkUpdaterService {
                 updatedLinks.add(linkDto);
             }
 
-            linkService.updateCheckedAt(linkDto.getUrl(), Timestamp.from(Instant.now()));
+            linkService.updateCheckedAt(linkDto.getUrl(), OffsetDateTime.now());
         }
 
         return updatedLinks;

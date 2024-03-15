@@ -5,6 +5,7 @@ import edu.java.repository.LinkDao;
 import java.net.URI;
 import java.sql.Timestamp;
 import java.time.Duration;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class JdbcLinkDao implements LinkDao {
     public List<LinkDto> findAll(Long tgChatId) {
         return jdbcTemplate.query(
             GET_LINKS_QUERY
-            + " WHERE chats.chat_id = ?",
+                + " WHERE chats.chat_id = ?",
             SET_EXTRACTOR,
             tgChatId
         );
@@ -50,8 +51,9 @@ public class JdbcLinkDao implements LinkDao {
     @Override
     public LinkDto add(URI url, Long chatId) {
         // TODO: add unique link checks
-        LinkDto linkDto = jdbcTemplate.query("insert into links (url) values (?) RETURNING *", ROW_MAPPER, url.toString())
-            .getFirst();
+        LinkDto linkDto =
+            jdbcTemplate.query("insert into links (url) values (?) RETURNING *", ROW_MAPPER, url.toString())
+                .getFirst();
 
         jdbcTemplate.update(
             "insert into chats_links (chat_id, link_id) values (?, ?)",
@@ -69,13 +71,13 @@ public class JdbcLinkDao implements LinkDao {
     }
 
     @Override
-    public void updateCheckedAt(URI url, Timestamp timestamp) {
-
+    public void updateCheckedAt(URI url, OffsetDateTime timestamp) {
+        jdbcTemplate.update("update links set checked_at = ? where url = ?", timestamp, url.toString());
     }
 
     @Override
-    public void updateUpdatedAt(URI url, Timestamp timestamp) {
-
+    public void updateUpdatedAt(URI url, OffsetDateTime timestamp) {
+        jdbcTemplate.update("update links set updated_at = ? where url = ?", timestamp, url.toString());
     }
 
     @Override

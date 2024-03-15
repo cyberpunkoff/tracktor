@@ -21,7 +21,7 @@ public class WebClientBotClient implements BotClient {
     @Override
     public void sendUpdate(LinkUpdateRequest linkUpdateRequest) {
         webClient.post()
-            .uri(DEFAULT_BASE_URL)
+            .uri(UPDATES_ENDPOINT)
             .bodyValue(linkUpdateRequest)
             .retrieve()
             .bodyToMono(Void.class)

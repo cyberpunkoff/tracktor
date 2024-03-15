@@ -6,6 +6,7 @@ import edu.java.service.LinkService;
 import java.net.URI;
 import java.sql.Timestamp;
 import java.time.Duration;
+import java.time.OffsetDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,12 +32,12 @@ public class JdbcLinkService implements LinkService {
     }
 
     @Override
-    public void updateCheckedAt(URI url, Timestamp timestamp) {
+    public void updateCheckedAt(URI url, OffsetDateTime timestamp) {
         linkRepository.updateCheckedAt(url, timestamp);
     }
 
     @Override
-    public void updateUpdatedAt(URI url, Timestamp timestamp) {
+    public void updateUpdatedAt(URI url, OffsetDateTime timestamp) {
         linkRepository.updateUpdatedAt(url, timestamp);
     }
 
