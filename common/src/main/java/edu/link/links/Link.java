@@ -2,8 +2,8 @@ package edu.link.links;
 
 import edu.link.parsers.GitHubLinkParser;
 import edu.link.parsers.StackOverflowLinkParser;
-
 import java.util.Objects;
+
 
 public abstract class Link {
     private static final GitHubLinkParser GIT_HUB_LINK_PARSER = new GitHubLinkParser();
@@ -16,6 +16,7 @@ public abstract class Link {
     private final String url;
 
     protected Link(String url) {
+        // TODO: may be try changing this field to URI?
         this.url = url;
     }
 
