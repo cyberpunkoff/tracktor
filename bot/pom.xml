@@ -130,7 +130,7 @@
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.example</groupId>
+            <groupId>edu.java</groupId>
             <artifactId>common</artifactId>
             <version>0.1</version>
             <scope>compile</scope>

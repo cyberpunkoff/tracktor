@@ -5,6 +5,7 @@ import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 import edu.java.clients.github.GitHubClient;
 import edu.java.clients.github.RepositoryResponse;
 import java.time.OffsetDateTime;
+import edu.java.scrapper.IntegrationEnvironment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -18,7 +19,7 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMoc
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class GitHubWebClientTest {
+public class GitHubWebClientTest extends IntegrationEnvironment {
     @Autowired
     GitHubClient gitHubClient;
 
@@ -60,7 +61,7 @@ public class GitHubWebClientTest {
         return """
             {
               "id": "1296269",
-              "updated_at": "2024-02-15T09:50:13Z"
+              "pushed_at": "2024-02-15T09:50:13Z"
             }
             """;
     }
