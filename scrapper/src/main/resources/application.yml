@@ -16,6 +16,8 @@ spring:
     name: scrapper
   config:
     import: optional:file:.env[.properties]
+  jpa:
+    show-sql: true
 
   datasource:
     url: jdbc:postgresql://localhost:5432/scrapper

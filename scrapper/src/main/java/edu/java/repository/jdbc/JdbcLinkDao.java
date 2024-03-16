@@ -9,6 +9,7 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -50,18 +51,21 @@ public class JdbcLinkDao implements LinkDao {
 
     @Override
     public LinkDto add(URI url, Long chatId) {
-        // TODO: add unique link checks
-        LinkDto linkDto =
-            jdbcTemplate.query("insert into links (url) values (?) RETURNING *", ROW_MAPPER, url.toString())
-                .getFirst();
+        LinkDto existingLink = get(url);
+
+        if (existingLink == null) {
+            existingLink =
+                jdbcTemplate.query("insert into links (url) values (?) RETURNING *", ROW_MAPPER, url.toString())
+                    .getFirst();
+        }
 
         jdbcTemplate.update(
             "insert into chats_links (chat_id, link_id) values (?, ?)",
             chatId,
-            linkDto.getId()
+            existingLink.getId()
         );
 
-        return this.get(linkDto.getId());
+        return this.get(existingLink.getId());
     }
 
     @Override
@@ -82,12 +86,15 @@ public class JdbcLinkDao implements LinkDao {
 
     @Override
     public LinkDto get(URI url) {
-        return Objects.requireNonNull(jdbcTemplate.query(
+        try {
+            return jdbcTemplate.queryForObject(
                 GET_LINKS_QUERY + " WHERE links.url = ?",
-                SET_EXTRACTOR,
+                ROW_MAPPER,
                 url.toString()
-            ))
-            .getFirst();
+            );
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override

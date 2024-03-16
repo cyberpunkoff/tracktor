@@ -47,7 +47,6 @@ public class TelegramChatController {
     ) {
         telegramChatService.register(id);
         return new ResponseEntity<>(HttpStatus.OK);
-//        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @DeleteMapping("/{id}")

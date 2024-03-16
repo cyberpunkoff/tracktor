@@ -92,7 +92,6 @@ public class LinksController {
         LinkDto linkDto = linkService.add(tgChatId, addLinkRequest.link());
         LinkResponse response = new LinkResponse(Math.toIntExact(linkDto.getId()), linkDto.getUrl());
         return new ResponseEntity<>(response, HttpStatus.OK);
-//        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @Operation(
