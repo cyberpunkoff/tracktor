@@ -4,12 +4,12 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 import edu.java.AddLinkRequest;
 import edu.java.bot.clients.scrapper.ScrapperClient;
-import edu.link.links.Link;
 import edu.java.bot.model.UserMessage;
 import edu.java.bot.service.LinkService;
+import edu.link.links.Link;
+import java.net.URI;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
-import java.net.URI;
 
 @Component
 public class TrackCommand extends AbstractCommand {

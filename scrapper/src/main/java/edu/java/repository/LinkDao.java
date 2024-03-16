@@ -16,6 +16,10 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 public interface LinkDao {
+    String CHECKED_AT_LABEL = "checked_at";
+    String UPDATED_AT_LABEL = "updated_at";
+    String URL_LABEL = "url";
+
     ResultSetExtractor<List<LinkDto>> SET_EXTRACTOR = (ResultSet resultSet) -> {
         Map<Long, LinkDto> linkById = new HashMap<>();
 
@@ -23,11 +27,11 @@ public interface LinkDao {
             Long chatId = resultSet.getLong("chat_id");
 
             Long id = resultSet.getLong("id");
-            Timestamp updatedAt = resultSet.getTimestamp("updated_at");
-            Timestamp checkedAt = resultSet.getTimestamp("checked_at");
+            Timestamp updatedAt = resultSet.getTimestamp(UPDATED_AT_LABEL);
+            Timestamp checkedAt = resultSet.getTimestamp(CHECKED_AT_LABEL);
             URI url;
             try {
-                url = new URI(resultSet.getString("url"));
+                url = new URI(resultSet.getString(URL_LABEL));
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
             }
@@ -42,11 +46,11 @@ public interface LinkDao {
 
     RowMapper<LinkDto> ROW_MAPPER = (ResultSet resultSet, int rowNum) -> {
         Long id = resultSet.getLong("id");
-        Timestamp updatedAt = resultSet.getTimestamp("updated_at");
-        Timestamp checkedAt = resultSet.getTimestamp("checked_at");
+        Timestamp updatedAt = resultSet.getTimestamp(UPDATED_AT_LABEL);
+        Timestamp checkedAt = resultSet.getTimestamp(CHECKED_AT_LABEL);
         URI url;
         try {
-            url = new URI(resultSet.getString("url"));
+            url = new URI(resultSet.getString(URL_LABEL));
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

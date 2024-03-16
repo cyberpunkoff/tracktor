@@ -3,7 +3,6 @@ package edu.java.repository.jdbc;
 import edu.java.dto.LinkDto;
 import edu.java.repository.LinkDao;
 import java.net.URI;
-import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.List;

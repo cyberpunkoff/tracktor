@@ -2,7 +2,6 @@ package edu.java.service;
 
 import edu.java.dto.LinkDto;
 import java.net.URI;
-import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.List;
