@@ -39,7 +39,7 @@ public class TrackCommand extends AbstractCommand {
         Link link = Link.parse(url);
 
         if (link != null) {
-            linkService.addLink(update.message().from().id(), link);
+//            linkService.addLink(update.message().from().id(), link);
             scrapperClient.trackLink(chatId, new AddLinkRequest(new URI(link.getUrl())));
             return new SendMessage(chatId, "Added your link to list!");
         } else {

@@ -5,6 +5,7 @@ import com.pengrad.telegrambot.request.SendMessage;
 import edu.java.bot.clients.scrapper.ScrapperClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 @Component
 public class StartCommand extends AbstractCommand {
@@ -22,7 +23,11 @@ public class StartCommand extends AbstractCommand {
     @Override
     public SendMessage handle(Update update) {
         logMessage(update);
-        scrapperClient.addChat(update.message().chat().id());
-        return new SendMessage(update.message().chat().id(), MESSAGE);
+        try {
+            scrapperClient.addChat(update.message().chat().id());
+            return new SendMessage(update.message().chat().id(), MESSAGE);
+        } catch (WebClientResponseException e) {
+            return new SendMessage(update.message().chat().id(), "You are already registered!");
+        }
     }
 }

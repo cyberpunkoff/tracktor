@@ -40,6 +40,7 @@ public class UpdatesController {
         }
     )
     @PostMapping
+    // TODO: get rid of ResponseEntities
     public ResponseEntity<Void> sendUpdates(
         @Parameter(name = "LinkUpdateRequest", required = true)
         @Valid
