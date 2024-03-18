@@ -1,13 +1,15 @@
 package edu.java.clients.github;
 
 import edu.java.configuration.ApplicationConfig;
-import org.springframework.web.reactive.function.client.WebClient;
 import java.util.List;
+import org.springframework.web.reactive.function.client.WebClient;
 
 public class GitHubWebClient implements GitHubClient {
     private static final String DEFAULT_BASE_URL = "https://api.github.com";
     private static final String REPOSITORY_ENDPOINT = "/repos/{owner}/{repo}";
     private static final String EVENTS_SUFFIX = "/events";
+    public static final String AUTHORIZATION = "Authorization";
+    public static final String BEARER = "Bearer ";
     private final WebClient webClient;
     private final ApplicationConfig applicationConfig;
 
@@ -29,8 +31,8 @@ public class GitHubWebClient implements GitHubClient {
         return webClient.get()
             .uri(REPOSITORY_ENDPOINT, owner, repo)
             .header(
-                "Authorization",
-                "Bearer " + applicationConfig.client().gitHub().token()
+                AUTHORIZATION,
+                BEARER + applicationConfig.client().gitHub().token()
             )
             .retrieve()
             .bodyToMono(RepositoryResponse.class)
@@ -42,8 +44,8 @@ public class GitHubWebClient implements GitHubClient {
         return webClient.get()
             .uri(REPOSITORY_ENDPOINT + EVENTS_SUFFIX, owner, repo)
             .header(
-                "Authorization",
-                "Bearer " + applicationConfig.client().gitHub().token()
+                AUTHORIZATION,
+                BEARER + applicationConfig.client().gitHub().token()
             )
             .retrieve()
             .bodyToFlux(EventResponse.class)

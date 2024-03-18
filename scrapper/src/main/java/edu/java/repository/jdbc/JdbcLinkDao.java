@@ -8,11 +8,13 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-//@Repository
+@Repository
+@Primary
 public class JdbcLinkDao implements LinkDao {
     private static final String GET_LINKS_QUERY =
         "select links.id, url, updated_at, checked_at, chats.chat_id from links "

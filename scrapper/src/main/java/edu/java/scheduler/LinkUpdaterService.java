@@ -31,6 +31,8 @@ public class LinkUpdaterService {
         List<LinkUpdateRequest> updateRequests = new ArrayList<>();
 
         for (LinkDto linkDto : linksToUpdate) {
+            //TODO : properly fix this method
+            // bcoz it is wrong now
             OffsetDateTime oldUpdatedAt = linkDto.getUpdatedAt().toInstant().atOffset(ZoneOffset.UTC);
             Link link = Link.parse(linkDto.getUrl().toString());
             String description = "New update";
@@ -92,5 +94,4 @@ public class LinkUpdaterService {
             case DEFAULT -> "Repository updated";
         };
     }
-
 }

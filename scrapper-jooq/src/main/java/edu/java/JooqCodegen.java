@@ -9,7 +9,9 @@ import org.jooq.meta.jaxb.Jdbc;
 import org.jooq.meta.jaxb.Property;
 import org.jooq.meta.jaxb.Target;
 
+@SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 public class JooqCodegen {
+    @SuppressWarnings({"checkstyle:UncommentedMain", "checkstyle:MultipleStringLiterals"})
     public static void main(String[] args) throws Exception {
         Database database = new Database()
             .withName("org.jooq.meta.extensions.liquibase.LiquibaseDatabase")
