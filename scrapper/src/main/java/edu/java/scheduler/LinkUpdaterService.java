@@ -1,8 +1,8 @@
 package edu.java.scheduler;
 
 import edu.java.LinkUpdateRequest;
+import edu.java.clients.github.EventResponse;
 import edu.java.clients.github.GitHubClient;
-import edu.java.clients.github.RepositoryResponse;
 import edu.java.clients.stackoverflow.QuestionResponse;
 import edu.java.clients.stackoverflow.StackOverflowClient;
 import edu.java.dto.Chat;
@@ -12,6 +12,7 @@ import edu.link.links.GitHubLink;
 import edu.link.links.Link;
 import edu.link.links.StackOverflowLink;
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -26,24 +27,35 @@ public class LinkUpdaterService {
     private final LinkService linkService;
     private final StackOverflowClient stackOverflowClient;
 
-    public List<LinkDto> updateLinks(List<LinkDto> linksToUpdate) {
-        List<LinkDto> updatedLinks = new ArrayList<>();
+    public List<LinkUpdateRequest> updateLinks(List<LinkDto> linksToUpdate) {
+        List<LinkUpdateRequest> updateRequests = new ArrayList<>();
 
         for (LinkDto linkDto : linksToUpdate) {
+            OffsetDateTime oldUpdatedAt = linkDto.getUpdatedAt().toInstant().atOffset(ZoneOffset.UTC);
             Link link = Link.parse(linkDto.getUrl().toString());
+            String description = "New update";
 
-            OffsetDateTime newUpdatedAt = null;
+            OffsetDateTime newUpdatedAt = OffsetDateTime.MIN;
             if (link instanceof GitHubLink gitHubLink) {
-                RepositoryResponse repositoryResponse =
-                    gitHubClient.fetch(gitHubLink.getUserName(), gitHubLink.getRepoName());
-                newUpdatedAt = repositoryResponse.updatedAt();
+                List<EventResponse> events =
+                    gitHubClient.fetchEvents(gitHubLink.getUserName(), gitHubLink.getRepoName());
+
+                for (EventResponse event : events) {
+                    if (event.createdAt().isAfter(oldUpdatedAt)) {
+                        description = getGitHubEventDescription(event);
+                    }
+
+                    if (event.createdAt().isAfter(newUpdatedAt)) {
+                        newUpdatedAt = event.createdAt();
+                    }
+                }
+
             } else if (link instanceof StackOverflowLink stackOverflowLink) {
                 QuestionResponse questionResponse =
                     stackOverflowClient.fetchQuestion(stackOverflowLink.getQuestionId());
+                description = "Question updated";
                 newUpdatedAt = questionResponse.items().getFirst().lastActivityDate();
             }
-
-            OffsetDateTime oldUpdatedAt = linkDto.getUpdatedAt().toInstant().atOffset(newUpdatedAt.getOffset());
 
             log.debug("Old updatedAt={}, new updatedAt={}", oldUpdatedAt, newUpdatedAt);
 
@@ -52,27 +64,33 @@ public class LinkUpdaterService {
                 // TODO: may be I have to update it there; but idk
                 // TODO: like in repository to make url have last update time
                 // TODO: or maybe it is not necessary!
-                updatedLinks.add(linkDto);
+
+                updateRequests.add(createLinkUpdateRequest(linkDto, description));
             }
 
             linkService.updateCheckedAt(linkDto.getUrl(), OffsetDateTime.now());
         }
 
-        return updatedLinks;
+        return updateRequests;
     }
 
-    public List<LinkUpdateRequest> createLinkUpdateRequests(List<LinkDto> links) {
-        List<LinkUpdateRequest> linkUpdateRequests = new ArrayList<>();
-
-        for (LinkDto link : links) {
-            linkUpdateRequests.add(new LinkUpdateRequest(
-                link.getId(),
-                link.getUrl(),
-                "No description",
-                link.getTrackedBy().stream().map(Chat::getChatId).toList()
-            ));
-        }
-
-        return linkUpdateRequests;
+    public LinkUpdateRequest createLinkUpdateRequest(LinkDto link, String description) {
+        return new LinkUpdateRequest(
+            link.getId(),
+            link.getUrl(),
+            description,
+            link.getTrackedBy().stream().map(Chat::getChatId).toList()
+        );
     }
+
+    public String getGitHubEventDescription(EventResponse event) {
+        return switch (event.type()) {
+            case FORK -> "New fork of repository";
+            case PULL_REQUEST -> "New pull request";
+            case ISSUE -> "Issues update";
+            case PUSH -> "New push in repository";
+            case DEFAULT -> "Repository updated";
+        };
+    }
+
 }

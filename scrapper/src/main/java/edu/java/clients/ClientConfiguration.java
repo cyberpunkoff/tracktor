@@ -7,17 +7,31 @@ import edu.java.clients.stackoverflow.StackOverflowWebClient;
 import edu.java.configuration.ApplicationConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class ClientConfiguration {
     @Bean
-    public StackOverflowClient stackOverflowClient(ApplicationConfig applicationConfig) {
-        return new StackOverflowWebClient(applicationConfig.client().stackOverflow().baseUrl());
+    public StackOverflowClient stackOverflowClient(
+        WebClient.Builder webClientBuilder,
+        ApplicationConfig applicationConfig
+    ) {
+        return new StackOverflowWebClient(
+            webClientBuilder,
+            applicationConfig.client().stackOverflow().baseUrl()
+        );
     }
 
     // TODO: change this to proper way
     @Bean
-    public GitHubClient gitHubClient(ApplicationConfig applicationConfig) {
-        return new GitHubWebClient(applicationConfig.client().gitHub().baseUrl(), applicationConfig);
+    public GitHubClient gitHubClient(
+        WebClient.Builder webClientBuilder,
+        ApplicationConfig applicationConfig
+    ) {
+        return new GitHubWebClient(
+            webClientBuilder,
+            applicationConfig.client().gitHub().baseUrl(),
+            applicationConfig
+        );
     }
 }

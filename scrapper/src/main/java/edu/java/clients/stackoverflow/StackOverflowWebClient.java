@@ -10,11 +10,11 @@ public class StackOverflowWebClient implements StackOverflowClient {
     private final WebClient webClient;
 
     public StackOverflowWebClient() {
-        this(DEFAULT_BASE_URL);
+        this(WebClient.builder(), DEFAULT_BASE_URL);
     }
 
-    public StackOverflowWebClient(String baseUrl) {
-        this.webClient = WebClient.create(baseUrl);
+    public StackOverflowWebClient(WebClient.Builder webClientBuilder, String baseUrl) {
+        this.webClient = webClientBuilder.baseUrl(baseUrl).build();
     }
 
     @Override
