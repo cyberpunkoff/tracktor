@@ -20,6 +20,7 @@ import static org.jooq.impl.DSL.select;
 @Repository
 @RequiredArgsConstructor
 public class JooqLinkDao implements LinkDao {
+    public static final String TRACKED_BY = "trackedBy";
     private final DSLContext dslContext;
 
     @Override
@@ -33,7 +34,7 @@ public class JooqLinkDao implements LinkDao {
                     .from(CHATS_LINKS)
                     .where(CHATS_LINKS.LINK_ID.eq(LINKS.ID))
                 ).convertFrom(r -> r.map(mapping(Chat::new)))
-                    .as("trackedBy")
+                    .as(TRACKED_BY)
             )
             .from(LINKS)
             .where(CHATS_LINKS.CHAT_ID.eq(tgChatId))
@@ -51,7 +52,7 @@ public class JooqLinkDao implements LinkDao {
                     .from(CHATS_LINKS)
                     .where(CHATS_LINKS.LINK_ID.eq(LINKS.ID))
                 ).convertFrom(r -> r.map(mapping(Chat::new)))
-                    .as("trackedBy")
+                    .as(TRACKED_BY)
             )
             .from(LINKS)
             .where(LINKS.CHECKED_AT.lessThan(OffsetDateTime.now().minus(duration)))
@@ -88,7 +89,7 @@ public class JooqLinkDao implements LinkDao {
                     .from(CHATS_LINKS)
                     .where(CHATS_LINKS.LINK_ID.eq(LINKS.ID))
                 ).convertFrom(r -> r.map(mapping(Chat::new)))
-                    .as("trackedBy")
+                    .as(TRACKED_BY)
             )
             .from(LINKS)
             .where(LINKS.ID.eq(id))
@@ -120,7 +121,7 @@ public class JooqLinkDao implements LinkDao {
                     .from(CHATS_LINKS)
                     .where(CHATS_LINKS.LINK_ID.eq(LINKS.ID))
                 ).convertFrom(r -> r.map(mapping(Chat::new)))
-                    .as("trackedBy")
+                    .as(TRACKED_BY)
             )
             .from(LINKS)
             .where(LINKS.URL.eq(url.toString()))

@@ -12,7 +12,7 @@ public record ApplicationConfig(
     @NotNull
     @Bean
     Scheduler scheduler,
-    AccessType accessType,
+    AccessType databaseAccessType,
     @NotNull
     Client client
 ) {
