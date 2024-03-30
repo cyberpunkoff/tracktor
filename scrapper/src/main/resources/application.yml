@@ -55,7 +55,7 @@ bucket4j:
             unit: minutes
 
 server:
-  port: 8083
+  port: 8080
 
 springdoc:
   swagger-ui:
