@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.Duration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.retry.RetryPolicy;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
@@ -19,13 +20,15 @@ public record ApplicationConfig(
     public record Scheduler(boolean enable, @NotNull Duration interval, @NotNull Duration forceCheckDelay) {
     }
 
+    public enum RetryBackoffPolicy { CONSTANT, LINEAR, EXPONENT }
+
     public enum AccessType { JDBC, JPA, JOOQ }
 
     public record Client(GitHub gitHub, StackOverflow stackOverflow) {
-        public record GitHub(String baseUrl, String token) {
+        public record GitHub(RetryBackoffPolicy retryPolicy, String baseUrl, String token) {
         }
 
-        public record StackOverflow(String baseUrl) {
+        public record StackOverflow(RetryBackoffPolicy retryPolicy, String baseUrl) {
         }
     }
 }

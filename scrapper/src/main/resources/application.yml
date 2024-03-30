@@ -11,7 +11,7 @@ app:
     interval: 10s
     force-check-delay: 30s
 
-  database-access-type: jpa
+  database-access-type: jdbc
 
 spring:
   application:
@@ -34,6 +34,25 @@ spring:
 
   liquibase:
     enabled: false
+
+  cache:
+    cache-names:
+      - rate-limit-buckets
+    caffeine:
+      spec: maximumSize=100000,expireAfterAccess=3600s
+
+bucket4j:
+  enabled: true
+  filters:
+  - cache-name: rate-limit-buckets
+    url: .*
+    http-status-code: TOO_MANY_REQUESTS
+    rate-limits:
+      - cache-key: getRemoteAddr()
+        bandwidths:
+          - capacity: 100
+            time: 1
+            unit: minutes
 
 server:
   port: 8083

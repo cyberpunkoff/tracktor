@@ -22,7 +22,6 @@ public class ClientConfiguration {
         );
     }
 
-    // TODO: change this to proper way
     @Bean
     public GitHubClient gitHubClient(
         WebClient.Builder webClientBuilder,
