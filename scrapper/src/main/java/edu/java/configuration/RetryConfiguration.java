@@ -1,7 +1,10 @@
 package edu.java.configuration;
 
+import edu.java.clients.LinearRetry;
 import org.springframework.data.util.ReactiveWrappers;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
+import reactor.core.Exceptions;
+import reactor.core.publisher.Flux;
 import reactor.util.retry.Retry;
 import reactor.util.retry.RetryBackoffSpec;
 import java.time.Duration;
@@ -27,6 +30,7 @@ public class RetryConfiguration {
         switch (type) {
             case CONSTANT -> retryBackoffSpec = Retry.fixedDelay(MAX_ATTEMPTS, FIXED_DELAY);
             case EXPONENT -> retryBackoffSpec = Retry.backoff(MAX_ATTEMPTS, FIXED_DELAY);
+            case LINEAR -> retryBackoffSpec = new LinearRetry(FIXED_DELAY, MAX_ATTEMPTS);
         }
 
         retryBackoffSpec = retryBackoffSpec.filter(error -> filterError(error, codes));
