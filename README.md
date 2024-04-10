@@ -1,5 +1,5 @@
-![Bot](https://github.com/cyberpunkoff/tinkoff-java-course-backend-project/actions/workflows/bot.yml/badge.svg)
-![Scrapper](https://github.com/cyberpunkoff/tinkoff-java-course-backend-project/actions/workflows/scrapper.yml/badge.svg)
+![Bot](https://github.com/cyberpunkoff/tracktor/actions/workflows/bot.yml/badge.svg)
+![Scrapper](https://github.com/cyberpunkoff/tracktor/actions/workflows/scrapper.yml/badge.svg)
 
 # 🚜🔗 track*tor*
 
