@@ -1,7 +1,7 @@
 ![Bot](https://github.com/cyberpunkoff/tinkoff-java-course-backend-project/actions/workflows/bot.yml/badge.svg)
 ![Scrapper](https://github.com/cyberpunkoff/tinkoff-java-course-backend-project/actions/workflows/scrapper.yml/badge.svg)
 
-# Link Tracker
+# 🚜 tracktor
 
 ФИО: `Ластин Василий Ильич`
 
