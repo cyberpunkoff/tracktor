@@ -1,4 +1,4 @@
-package edu.java.scheduler;
+package edu.java.service.updater;
 
 import edu.java.LinkUpdateRequest;
 import edu.java.clients.stackoverflow.QuestionResponse;
@@ -9,6 +9,7 @@ import edu.link.links.Link;
 import edu.link.links.StackOverflowLink;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StackoverflowLinkUpdater extends LinkUpdater {
@@ -16,7 +17,7 @@ public class StackoverflowLinkUpdater extends LinkUpdater {
     private OffsetDateTime updatedAt;
     private boolean isLinkUpdated;
     private LinkDto link;
-    List<LinkUpdateRequest> updates;
+    List<LinkUpdateRequest> updates = new ArrayList<>();
 
     public StackoverflowLinkUpdater(StackOverflowClient stackOverflowClient) {
         this.stackOverflowClient = stackOverflowClient;

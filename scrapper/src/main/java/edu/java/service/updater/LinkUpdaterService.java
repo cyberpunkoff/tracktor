@@ -1,4 +1,4 @@
-package edu.java.scheduler;
+package edu.java.service.updater;
 
 import edu.java.LinkUpdateRequest;
 import edu.java.clients.github.GitHubClient;

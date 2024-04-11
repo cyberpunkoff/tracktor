@@ -11,7 +11,7 @@ public interface LinkService {
 
     LinkDto remove(long tgChatId, URI url);
 
-    List<LinkDto> listAllCheckedLaterThan(Duration duration);
+    List<LinkDto> getLinksCheckedDurationAgo(Duration duration);
 
     void updateCheckedAt(URI url, OffsetDateTime timestamp);
 

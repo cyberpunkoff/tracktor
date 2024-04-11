@@ -1,4 +1,4 @@
-package edu.java.scheduler;
+package edu.java.service.updater;
 
 import edu.java.LinkUpdateRequest;
 import edu.java.clients.github.EventResponse;
@@ -9,6 +9,7 @@ import edu.link.links.GitHubLink;
 import edu.link.links.Link;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GitHubLinkUpdater extends LinkUpdater {
@@ -16,7 +17,7 @@ public class GitHubLinkUpdater extends LinkUpdater {
     private final GitHubClient gitHubClient;
     private LinkDto link;
     private boolean isLinkUpdated;
-    List<LinkUpdateRequest> updates;
+    List<LinkUpdateRequest> updates = new ArrayList<>();
 
     public GitHubLinkUpdater(GitHubClient gitHubClient) {
         this.gitHubClient = gitHubClient;

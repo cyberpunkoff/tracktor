@@ -4,6 +4,7 @@ import edu.java.LinkUpdateRequest;
 import edu.java.clients.bot.BotClient;
 import edu.java.configuration.ApplicationConfig;
 import edu.java.dto.LinkDto;
+import edu.java.service.updater.LinkUpdaterService;
 import edu.java.service.LinkService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
