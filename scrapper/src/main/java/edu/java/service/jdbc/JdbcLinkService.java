@@ -45,7 +45,7 @@ public class JdbcLinkService implements LinkService {
 
     @Override
     @Transactional
-    public List<LinkDto> listAllCheckedLaterThan(Duration duration) {
+    public List<LinkDto> getLinksCheckedDurationAgo(Duration duration) {
         return linkRepository.findAllCheckedLaterThan(duration);
     }
 
