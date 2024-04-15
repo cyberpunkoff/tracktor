@@ -16,9 +16,14 @@ public final class CommandParser {
     public static UserMessage parseMessage(String message) {
         String[] parts = message.split(" ");
         // TODO: add checks for invalid message structure
-        return UserMessage.builder()
-            .command(parts[0])
-            .arguments(Arrays.copyOfRange(parts, Math.min(1, parts.length - 1), parts.length))
-            .build();
+
+        UserMessage.UserMessageBuilder userMessage = UserMessage.builder();
+        userMessage.command(parts[0]);
+
+        if (parts.length > 1) {
+            userMessage.arguments(Arrays.copyOfRange(parts, 1, parts.length));
+        }
+
+        return userMessage.build();
     }
 }

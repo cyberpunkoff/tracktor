@@ -1,4 +1,4 @@
-package edu.java.bot.controller;
+package edu.java.bot.exceptions.handlers;
 
 import edu.java.bot.exceptions.NoSuchChatException;
 import edu.java.bot.model.controller.exceptions.ApiErrorResponse;
@@ -7,9 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@org.springframework.web.bind.annotation.RestControllerAdvice
-public class RestControllerAdvice {
+@RestControllerAdvice
+public class UpdatesControllerErrorHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiErrorResponse> nonValidMethodArgumentException(MethodArgumentNotValidException exception) {
         return ResponseEntity

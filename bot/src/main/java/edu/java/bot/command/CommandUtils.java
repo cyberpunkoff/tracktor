@@ -1,5 +1,6 @@
 package edu.java.bot.command;
 
+import edu.java.bot.link.links.Link;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -19,8 +20,8 @@ public final class CommandUtils {
         return message.toString();
     }
 
-    public static String createListMessage(List<String> links) {
-        if (links == null) {
+    public static String createListMessage(List<Link> links) {
+        if (links == null || links.isEmpty()) {
             return "You haven't added any links yet";
         }
 

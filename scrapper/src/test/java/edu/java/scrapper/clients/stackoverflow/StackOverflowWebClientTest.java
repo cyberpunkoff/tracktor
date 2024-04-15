@@ -7,6 +7,7 @@ import edu.java.clients.stackoverflow.StackOverflowClient;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -49,6 +50,13 @@ public class StackOverflowWebClientTest {
         QuestionResponse questionResponse = stackOverflowClient.fetchQuestion(68769565);
 
         assertThat(questionResponse.items().getFirst().id()).isEqualTo(68769565);
+    }
+
+    @Test
+    public void testAmountOfQuestions_isCorrect() {
+        List<QuestionResponse> questionResponses = stackOverflowClient.fetchQuestions(List.of(68769565L));
+
+        assertThat(questionResponses.size()).isEqualTo(1);
     }
 
     @Test

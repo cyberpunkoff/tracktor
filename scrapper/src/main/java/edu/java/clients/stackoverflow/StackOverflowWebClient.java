@@ -1,5 +1,7 @@
 package edu.java.clients.stackoverflow;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.web.reactive.function.client.WebClient;
 
 public class StackOverflowWebClient implements StackOverflowClient {
@@ -21,6 +23,16 @@ public class StackOverflowWebClient implements StackOverflowClient {
             .uri(QUESTION_ENDPOINT, id)
             .retrieve()
             .bodyToMono(QuestionResponse.class)
+            .block();
+    }
+
+    @Override
+    public List<QuestionResponse> fetchQuestions(List<Long> ids) {
+        return webClient.get()
+            .uri(QUESTION_ENDPOINT, ids.stream().map(String::valueOf).collect(Collectors.joining(";")))
+            .retrieve()
+            .bodyToFlux(QuestionResponse.class)
+            .collectList()
             .block();
     }
 }
