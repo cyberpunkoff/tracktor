@@ -124,6 +124,11 @@
             <artifactId>kafka</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -157,6 +162,57 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.openapitools</groupId>-->
+<!--                <artifactId>openapi-generator-maven-plugin</artifactId>-->
+<!--                <version>7.3.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>controller</id>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <inputSpec>-->
+<!--                                ${project.basedir}/src/main/resources/openapi/bot-api.json-->
+<!--                            </inputSpec>-->
+<!--                            <generatorName>spring</generatorName>-->
+<!--                            <apiPackage>edu.java.bot.api</apiPackage>-->
+<!--                            <modelPackage>edu.java.bot.model</modelPackage>-->
+<!--                            <supportingFilesToGenerate>-->
+<!--                                ApiUtil.java-->
+<!--                            </supportingFilesToGenerate>-->
+<!--                            <configOptions>-->
+<!--                                <useSpringBoot3>true</useSpringBoot3>-->
+<!--                                <interfaceOnly>true</interfaceOnly>-->
+<!--                            </configOptions>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+<!--                    <execution>-->
+<!--                        <id>client</id>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <inputSpec>-->
+<!--                                ${project.basedir}/src/main/resources/openapi/scrapper-api.json-->
+<!--                            </inputSpec>-->
+<!--                            <generatorName>java</generatorName>-->
+<!--                            <apiPackage>edu.java.bot.scrapperclient.api</apiPackage>-->
+<!--                            <modelPackage>edu.java.bot.scrapperclient.model</modelPackage>-->
+<!--                            <generateApiDocumentation>false</generateApiDocumentation>-->
+<!--                            <generateApiTests>false</generateApiTests>-->
+<!--                            <configOptions>-->
+<!--                                <library>webclient</library>-->
+<!--                                <useJakartaEe>true</useJakartaEe>-->
+<!--                                <interfaceOnly>true</interfaceOnly>-->
+<!--                            </configOptions>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>

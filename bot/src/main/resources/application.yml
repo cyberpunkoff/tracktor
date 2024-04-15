@@ -1,5 +1,6 @@
 app:
   telegram-token: ${TELEGRAM_TOKEN}
+  scrapper-url: http://127.0.0.1:8080
 
 spring:
   application:
@@ -11,6 +12,10 @@ spring:
 
 server:
   port: 8090
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
 
 logging:
   config: classpath:log4j2-plain.xml

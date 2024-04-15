@@ -125,6 +125,10 @@
             <artifactId>kafka</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -158,6 +162,30 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.openapitools</groupId>-->
+<!--                <artifactId>openapi-generator-maven-plugin</artifactId>-->
+<!--                <version>7.3.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <inputSpec>-->
+<!--                                ${project.basedir}/src/main/resources/openapi/scrapper-api.json-->
+<!--                            </inputSpec>-->
+<!--                            <generatorName>spring</generatorName>-->
+<!--                            <apiPackage>edu.java.api</apiPackage>-->
+<!--                            <modelPackage>edu.java.model</modelPackage>-->
+<!--                            <configOptions>-->
+<!--                                <interfaceOnly>true</interfaceOnly>-->
+<!--                                <useSpringBoot3>true</useSpringBoot3>-->
+<!--                            </configOptions>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>
