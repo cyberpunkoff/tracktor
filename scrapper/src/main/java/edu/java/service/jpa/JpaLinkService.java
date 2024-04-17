@@ -75,7 +75,7 @@ public class JpaLinkService implements LinkService {
             linkEntity.getUrl(),
             linkEntity.getUpdatedAt(),
             linkEntity.getCheckedAt(),
-            linkEntity.getTrackedBy().stream().map(e -> new Chat(e.getChatId())).toList()
+            linkEntity.getTrackedBy().stream().map(e -> new Chat(e.getId())).toList()
         );
     }
 }

@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "links")
+@Table(name = "link")
 public class LinkEntity {
     @Id
     private Long id;
@@ -25,7 +25,7 @@ public class LinkEntity {
     private Timestamp checkedAt;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-        name = "chats_links",
+        name = "chat_link",
         joinColumns = @JoinColumn(name = "link_id"),
         inverseJoinColumns = @JoinColumn(name = "chat_id")
     )

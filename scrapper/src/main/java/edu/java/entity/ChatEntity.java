@@ -11,22 +11,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "chats")
+@Table(name = "chat")
 public class ChatEntity {
     @Id
-    private Long chatId;
+    private Long id;
     @ManyToMany(mappedBy = "trackedBy")
     private List<LinkEntity> links;
 
     public ChatEntity(long tgChatId) {
     }
 
-    public Long getChatId() {
-        return chatId;
+    public Long getId() {
+        return id;
     }
 
-    public void setChatId(Long chatId) {
-        this.chatId = chatId;
+    public void setId(Long chatId) {
+        this.id = chatId;
     }
 
     public List<LinkEntity> getLinks() {

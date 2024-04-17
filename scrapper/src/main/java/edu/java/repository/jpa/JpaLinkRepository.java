@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JpaLinkRepository extends JpaRepository<LinkEntity, Long> {
-    @Query("SELECT l from LinkEntity l JOIN l.trackedBy c WHERE c.chatId = :id")
+    @Query("SELECT l from LinkEntity l JOIN l.trackedBy c WHERE c.id = :id")
     List<LinkEntity> findByTrackedById(Long id);
 
     @Modifying
