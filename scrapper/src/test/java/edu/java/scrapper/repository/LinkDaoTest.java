@@ -39,7 +39,7 @@ public class LinkDaoTest extends IntegrationEnvironment {
         linkDao.add(url, userId);
 
         String linkFromDb =
-            jdbcTemplate.queryForObject("SELECT url from links WHERE url = ?", String.class, url.toString());
+            jdbcTemplate.queryForObject("SELECT url from link WHERE url = ?", String.class, url.toString());
 
         assertThat(linkFromDb).isEqualTo(url.toString());
     }
@@ -52,10 +52,10 @@ public class LinkDaoTest extends IntegrationEnvironment {
         Long userId = 123L;
         URI url = new URI("https://example.com");
 
-        jdbcTemplate.update("INSERT INTO chats values (?)", userId);
+        jdbcTemplate.update("INSERT INTO chat values (?)", userId);
         Long linkId =
-            jdbcTemplate.queryForObject("INSERT INTO links (url) values (?) RETURNING id", Long.class, url.toString());
-        jdbcTemplate.update("INSERT INTO chats_links (chat_id, link_id) values (123, ?)", linkId);
+            jdbcTemplate.queryForObject("INSERT INTO link (url) values (?) RETURNING id", Long.class, url.toString());
+        jdbcTemplate.update("INSERT INTO chat_link (chat_id, link_id) values (123, ?)", linkId);
 
         String linkFromDb = linkDao.get(url).getUrl().toString();
 
@@ -70,10 +70,10 @@ public class LinkDaoTest extends IntegrationEnvironment {
         Long userId = 123L;
         URI url = new URI("https://example.com");
 
-        jdbcTemplate.update("INSERT INTO chats values (?)", userId);
+        jdbcTemplate.update("INSERT INTO chat values (?)", userId);
         Long linkId =
-            jdbcTemplate.queryForObject("INSERT INTO links (url) values (?) RETURNING id", Long.class, url.toString());
-        jdbcTemplate.update("INSERT INTO chats_links (chat_id, link_id) values (123, ?)", linkId);
+            jdbcTemplate.queryForObject("INSERT INTO link (url) values (?) RETURNING id", Long.class, url.toString());
+        jdbcTemplate.update("INSERT INTO chat_link (chat_id, link_id) values (123, ?)", linkId);
 
         String linkFromDb = linkDao.get(linkId).getUrl().toString();
 
@@ -88,10 +88,10 @@ public class LinkDaoTest extends IntegrationEnvironment {
         Long userId = 123L;
         URI url = new URI("https://example.com");
 
-        jdbcTemplate.update("INSERT INTO chats values (?)", userId);
+        jdbcTemplate.update("INSERT INTO chat values (?)", userId);
         Long linkId =
-            jdbcTemplate.queryForObject("INSERT INTO links (url) values (?) RETURNING id", Long.class, url.toString());
-        jdbcTemplate.update("INSERT INTO chats_links (chat_id, link_id) values (123, ?)", linkId);
+            jdbcTemplate.queryForObject("INSERT INTO link (url) values (?) RETURNING id", Long.class, url.toString());
+        jdbcTemplate.update("INSERT INTO chat_link (chat_id, link_id) values (123, ?)", linkId);
 
         LinkDto removedLink = linkDao.remove(url, userId);
 
@@ -106,10 +106,10 @@ public class LinkDaoTest extends IntegrationEnvironment {
         Long userId = 123L;
         URI url = new URI("https://example.com");
 
-        jdbcTemplate.update("INSERT INTO chats values (?)", userId);
+        jdbcTemplate.update("INSERT INTO chat values (?)", userId);
         Long linkId =
-            jdbcTemplate.queryForObject("INSERT INTO links (url) values (?) RETURNING id", Long.class, url.toString());
-        jdbcTemplate.update("INSERT INTO chats_links (chat_id, link_id) values (123, ?)", linkId);
+            jdbcTemplate.queryForObject("INSERT INTO link (url) values (?) RETURNING id", Long.class, url.toString());
+        jdbcTemplate.update("INSERT INTO chat_link (chat_id, link_id) values (123, ?)", linkId);
 
         List<LinkDto> linksFromDb = linkDao.findAll(userId);
 
@@ -124,13 +124,13 @@ public class LinkDaoTest extends IntegrationEnvironment {
         Long userId = 123L;
         URI url = new URI("https://example.com");
 
-        jdbcTemplate.update("INSERT INTO chats values (?)", userId);
-        Long linkId = jdbcTemplate.queryForObject("INSERT INTO links (url, checked_at) values (?, ?) RETURNING id",
+        jdbcTemplate.update("INSERT INTO chat values (?)", userId);
+        Long linkId = jdbcTemplate.queryForObject("INSERT INTO link (url, checked_at) values (?, ?) RETURNING id",
             Long.class,
             url.toString(),
             OffsetDateTime.now().minusMinutes(5)
         );
-        jdbcTemplate.update("INSERT INTO chats_links (chat_id, link_id) values (123, ?)", linkId);
+        jdbcTemplate.update("INSERT INTO chat_link (chat_id, link_id) values (123, ?)", linkId);
 
         List<LinkDto> linksFromDb = linkDao.findAllCheckedLaterThan(Duration.ZERO);
 

@@ -58,7 +58,6 @@ public class LinksController {
         @RequestHeader("Tg-Chat-Id")
         Long tgChatId
     ) {
-
         List<LinkDto> linkDtos = linkService.listAll(tgChatId);
         ListLinksResponse response = new ListLinksResponse(linkDtos.stream()
             .map(e -> new LinkResponse(Integer.parseInt(e.getId().toString()), e.getUrl())).toList(), linkDtos.size());
@@ -120,7 +119,6 @@ public class LinksController {
         @RequestBody
         RemoveLinkRequest removeLinkRequest
     ) {
-//        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
         LinkDto linkDto = linkService.remove(tgChatId, removeLinkRequest.request());
 
         LinkResponse response = new LinkResponse(Math.toIntExact(linkDto.getId()), linkDto.getUrl());

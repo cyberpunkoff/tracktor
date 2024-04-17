@@ -1,24 +1,24 @@
 --liquibase formatted sql
 
 --changeset vasilii:1
-CREATE TABLE chats
+CREATE TABLE chat
 (
-    chat_id bigint not null unique
+    id bigint primary key
 );
 
 --changeset vasilii:2
-CREATE TABLE links
+CREATE TABLE link
 (
-    id  bigint generated always as identity unique,
-    url text not null unique,
+    id         bigint generated always as identity primary key,
+    url        text                     not null unique,
     checked_at timestamp with time zone NOT NULL DEFAULT NOW(),
     updated_at timestamp with time zone NOT NULL DEFAULT NOW()
 );
 
 --changeset vasilii:3
-CREATE TABLE chats_links
+CREATE TABLE chat_link
 (
-    chat_id bigint REFERENCES chats (chat_id) ON UPDATE CASCADE ON DELETE CASCADE,
-    link_id bigint REFERENCES links (id) ON UPDATE CASCADE,
-    CONSTRAINT chats_links_pk PRIMARY KEY (chat_id, link_id)
+    chat_id bigint REFERENCES chat (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    link_id bigint REFERENCES link (id) ON UPDATE CASCADE,
+    CONSTRAINT pk_chat_link PRIMARY KEY (chat_id, link_id)
 );
