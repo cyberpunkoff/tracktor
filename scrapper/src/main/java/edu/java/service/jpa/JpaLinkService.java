@@ -22,15 +22,24 @@ public class JpaLinkService implements LinkService {
     @Override
     public LinkDto add(long tgChatId, URI url) {
         LinkEntity link = linkRepository.findFirstByUrl(url);
-        ChatEntity chat = chatRepository.findById(tgChatId).get();
+
+        if (link == null) {
+            link = linkRepository.save(new LinkEntity(url));
+        }
+
+        ChatEntity chat = chatRepository.findFirstById(tgChatId);
+
         link.getTrackedBy().add(chat);
+        chat.getLinks().add(link);
+
         linkRepository.save(link);
+        chatRepository.save(chat);
         return linkEntityToDtoMapper(link);
     }
 
     @Override
     public LinkDto remove(long tgChatId, URI url) {
-        ChatEntity chat = chatRepository.findById(tgChatId).get();
+        ChatEntity chat = chatRepository.findFirstById(tgChatId);
         LinkEntity link = linkRepository.findFirstByUrl(url);
         chat.getLinks().remove(link);
 
@@ -43,9 +52,9 @@ public class JpaLinkService implements LinkService {
     }
 
     @Override
-    public List<LinkDto> listAllCheckedLaterThan(Duration duration) {
+    public List<LinkDto> getLinksCheckedDurationAgo(Duration duration) {
         return linkRepository.findByCheckedAtBefore(
-                Timestamp.from(OffsetDateTime.now().toInstant().minus(duration))
+                OffsetDateTime.now().minus(duration)
             ).stream()
             .map(JpaLinkService::linkEntityToDtoMapper)
             .toList();
@@ -73,9 +82,9 @@ public class JpaLinkService implements LinkService {
         return new LinkDto(
             linkEntity.getId(),
             linkEntity.getUrl(),
-            linkEntity.getUpdatedAt(),
-            linkEntity.getCheckedAt(),
-            linkEntity.getTrackedBy().stream().map(e -> new Chat(e.getChatId())).toList()
+            Timestamp.from(linkEntity.getUpdatedAt().toInstant()),
+            Timestamp.from(linkEntity.getCheckedAt().toInstant()),
+            linkEntity.getTrackedBy().stream().map(e -> new Chat(e.getId())).toList()
         );
     }
 }
