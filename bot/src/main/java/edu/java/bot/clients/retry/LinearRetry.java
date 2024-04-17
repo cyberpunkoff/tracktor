@@ -1,13 +1,12 @@
 package edu.java.bot.clients.retry;
 
+import java.time.Duration;
+import java.util.function.Predicate;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 import reactor.util.retry.Retry;
-
-import java.time.Duration;
-import java.util.function.Predicate;
 
 public class LinearRetry extends Retry {
     public final Duration minBackoff;

@@ -1,11 +1,11 @@
 package edu.java.bot.clients.retry;
 
+import edu.java.bot.configuration.RetryConfiguration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import edu.java.bot.configuration.RetryConfiguration;
 import lombok.experimental.UtilityClass;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
