@@ -43,7 +43,7 @@ public class JpaLinkService implements LinkService {
     }
 
     @Override
-    public List<LinkDto> listAllCheckedLaterThan(Duration duration) {
+    public List<LinkDto> getLinksCheckedDurationAgo(Duration duration) {
         return linkRepository.findByCheckedAtBefore(
                 Timestamp.from(OffsetDateTime.now().toInstant().minus(duration))
             ).stream()
