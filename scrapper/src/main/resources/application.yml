@@ -2,17 +2,22 @@ app:
   client:
     git-hub:
       base-url: https://api.github.com
+      token: ${GITHUB_TOKEN}
     stack-overflow:
       base-url: https://api.stackexchange.com/2.3
 
   scheduler:
     enable: true
     interval: 10s
-    force-check-delay: 10s
+    force-check-delay: 30s
 
 spring:
   application:
     name: scrapper
+  config:
+    import: optional:file:.env[.properties]
+  jpa:
+    show-sql: true
 
   datasource:
     url: jdbc:postgresql://localhost:5432/scrapper

@@ -13,6 +13,7 @@ public class StartCommandTest extends AbstractCommandTest {
     void startCommandTest() {
         when(message.text()).thenReturn("/start");
 
+
         String startCommandMessage = startCommand.handle(update).getParameters().get("text").toString();
 
         assertThat(startCommandMessage).isEqualTo(StartCommand.MESSAGE);

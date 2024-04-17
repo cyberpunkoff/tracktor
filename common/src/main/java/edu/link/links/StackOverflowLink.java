@@ -1,4 +1,4 @@
-package edu.java.bot.link.links;
+package edu.link.links;
 
 public class StackOverflowLink extends Link {
     private final long questionId;

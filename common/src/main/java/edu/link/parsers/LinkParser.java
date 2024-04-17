@@ -1,6 +1,6 @@
-package edu.java.bot.link.parsers;
+package edu.link.parsers;
 
-import edu.java.bot.link.links.Link;
+import edu.link.links.Link;
 
 public abstract class LinkParser {
     protected LinkParser next;

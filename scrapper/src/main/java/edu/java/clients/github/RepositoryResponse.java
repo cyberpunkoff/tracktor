@@ -7,7 +7,7 @@ import java.time.OffsetDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record RepositoryResponse(
     Long id,
-    @JsonProperty("updated_at")
+    @JsonProperty("pushed_at")
     OffsetDateTime updatedAt
 ) {
 }

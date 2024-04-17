@@ -1,7 +1,7 @@
-package edu.java.bot.link.parsers;
+package edu.link.parsers;
 
-import edu.java.bot.link.links.Link;
-import edu.java.bot.link.links.StackOverflowLink;
+import edu.link.links.Link;
+import edu.link.links.StackOverflowLink;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

@@ -1,7 +1,8 @@
 package edu.java.bot.controller;
 
-import edu.java.bot.model.controller.LinkUpdateRequest;
-import edu.java.bot.model.controller.exceptions.ApiErrorResponse;
+import edu.java.ApiErrorResponse;
+import edu.java.LinkUpdateRequest;
+import edu.java.bot.service.LinkUpdater;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -26,6 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Slf4j
 public class UpdatesController {
+    private final LinkUpdater linkUpdaterService;
+
     @Operation(
         operationId = "updatesPost",
         summary = "Отправить обновление",
@@ -37,12 +40,14 @@ public class UpdatesController {
         }
     )
     @PostMapping
+    // TODO: get rid of ResponseEntities
     public ResponseEntity<Void> sendUpdates(
         @Parameter(name = "LinkUpdateRequest", required = true)
         @Valid
         @RequestBody
         LinkUpdateRequest linkUpdateRequest
     ) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        linkUpdaterService.update(linkUpdateRequest);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

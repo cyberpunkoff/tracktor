@@ -1,7 +1,7 @@
-package edu.java.bot.link.parsers;
+package edu.link.parsers;
 
-import edu.java.bot.link.links.GitHubLink;
-import edu.java.bot.link.links.Link;
+import edu.link.links.GitHubLink;
+import edu.link.links.Link;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

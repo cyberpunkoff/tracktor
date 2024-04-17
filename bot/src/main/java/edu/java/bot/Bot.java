@@ -39,7 +39,7 @@ public class Bot implements UpdatesListener, ExceptionHandler, AutoCloseable {
         this.applicationConfig = applicationConfig;
     }
 
-    <T extends BaseRequest<T, R>, R extends BaseResponse> void execute(BaseRequest<T, R> request) {
+    public <T extends BaseRequest<T, R>, R extends BaseResponse> void execute(BaseRequest<T, R> request) {
         bot.execute(request);
     }
 

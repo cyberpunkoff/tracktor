@@ -15,8 +15,9 @@ public class ClientConfiguration {
         return new StackOverflowWebClient(applicationConfig.client().stackOverflow().baseUrl());
     }
 
+    // TODO: change this to proper way
     @Bean
     public GitHubClient gitHubClient(ApplicationConfig applicationConfig) {
-        return new GitHubWebClient(applicationConfig.client().gitHub().baseUrl());
+        return new GitHubWebClient(applicationConfig.client().gitHub().baseUrl(), applicationConfig);
     }
 }

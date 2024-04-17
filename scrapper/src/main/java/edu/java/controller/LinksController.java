@@ -1,10 +1,12 @@
 package edu.java.controller;
 
-import edu.java.model.controller.AddLinkRequest;
-import edu.java.model.controller.LinkResponse;
-import edu.java.model.controller.ListLinksResponse;
-import edu.java.model.controller.RemoveLinkRequest;
-import edu.java.model.controller.exceptions.ApiErrorResponse;
+import edu.java.AddLinkRequest;
+import edu.java.ApiErrorResponse;
+import edu.java.LinkResponse;
+import edu.java.ListLinksResponse;
+import edu.java.RemoveLinkRequest;
+import edu.java.dto.LinkDto;
+import edu.java.service.LinkService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -14,6 +16,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -30,6 +33,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/links")
 public class LinksController {
+    private final LinkService linkService;
+
+    public LinksController(LinkService linkService) {
+        this.linkService = linkService;
+    }
+
     @Operation(
         operationId = "linksGet",
         summary = "Получить все отслеживаемые ссылки",
@@ -49,7 +58,10 @@ public class LinksController {
         @RequestHeader("Tg-Chat-Id")
         Long tgChatId
     ) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        List<LinkDto> linkDtos = linkService.listAll(tgChatId);
+        ListLinksResponse response = new ListLinksResponse(linkDtos.stream()
+            .map(e -> new LinkResponse(Integer.parseInt(e.getId().toString()), e.getUrl())).toList(), linkDtos.size());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Operation(
@@ -75,7 +87,10 @@ public class LinksController {
         @RequestBody
         AddLinkRequest addLinkRequest
     ) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        // TODO: check how to use mappers
+        LinkDto linkDto = linkService.add(tgChatId, addLinkRequest.link());
+        LinkResponse response = new LinkResponse(Math.toIntExact(linkDto.getId()), linkDto.getUrl());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Operation(
@@ -104,6 +119,10 @@ public class LinksController {
         @RequestBody
         RemoveLinkRequest removeLinkRequest
     ) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        LinkDto linkDto = linkService.remove(tgChatId, removeLinkRequest.request());
+
+        LinkResponse response = new LinkResponse(Math.toIntExact(linkDto.getId()), linkDto.getUrl());
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

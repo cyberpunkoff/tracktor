@@ -1,9 +1,9 @@
 package edu.java.bot.clients.scrapper;
 
-import edu.java.bot.model.client.AddLinkRequest;
-import edu.java.bot.model.client.LinkResponse;
-import edu.java.bot.model.client.ListLinksResponse;
-import edu.java.bot.model.client.RemoveLinkRequest;
+import edu.java.AddLinkRequest;
+import edu.java.LinkResponse;
+import edu.java.ListLinksResponse;
+import edu.java.RemoveLinkRequest;
 
 public interface ScrapperClient {
     ListLinksResponse getLinks(Long tgChatId);

@@ -1,5 +1,8 @@
 package edu.java.bot.link.links;
 
+import edu.link.links.GitHubLink;
+import edu.link.links.Link;
+import edu.link.links.StackOverflowLink;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
