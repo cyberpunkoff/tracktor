@@ -17,9 +17,9 @@ import org.springframework.stereotype.Repository;
 @Primary
 public class JdbcLinkDao implements LinkDao {
     private static final String GET_LINKS_QUERY =
-        "select links.id, url, updated_at, checked_at, chats.chat_id from links "
-            + "JOIN chats_links ON links.id = chats_links.link_id "
-            + "JOIN chats ON chats_links.chat_id = chats.chat_id";
+        "select link.id, url, updated_at, checked_at, chat.id from link "
+            + "JOIN chat_link ON link.id = chat_link.link_id "
+            + "JOIN chat ON chat_link.chat_id = chat.id";
 
     private static final String GET_LINKS_OLDER_THAN_QUERY = GET_LINKS_QUERY
         + " WHERE EXTRACT(EPOCH FROM (CURRENT_TIMESTAMP - checked_at)) > ?";
@@ -35,7 +35,7 @@ public class JdbcLinkDao implements LinkDao {
     public List<LinkDto> findAll(Long tgChatId) {
         return jdbcTemplate.query(
             GET_LINKS_QUERY
-                + " WHERE chats.chat_id = ?",
+                + " WHERE chat.id = ?",
             SET_EXTRACTOR,
             tgChatId
         );
@@ -56,12 +56,12 @@ public class JdbcLinkDao implements LinkDao {
 
         if (existingLink == null) {
             existingLink =
-                jdbcTemplate.query("insert into links (url) values (?) RETURNING *", ROW_MAPPER, url.toString())
+                jdbcTemplate.query("insert into link (url) values (?) RETURNING *", ROW_MAPPER, url.toString())
                     .getFirst();
         }
 
         jdbcTemplate.update(
-            "insert into chats_links (chat_id, link_id) values (?, ?)",
+            "insert into chat_link (chat_id, link_id) values (?, ?)",
             chatId,
             existingLink.getId()
         );
@@ -71,25 +71,25 @@ public class JdbcLinkDao implements LinkDao {
 
     @Override
     public LinkDto get(Long id) {
-        return Objects.requireNonNull(jdbcTemplate.query(GET_LINKS_QUERY + " WHERE links.id = ?", SET_EXTRACTOR, id))
+        return Objects.requireNonNull(jdbcTemplate.query(GET_LINKS_QUERY + " WHERE link.id = ?", SET_EXTRACTOR, id))
             .getFirst();
     }
 
     @Override
     public void updateCheckedAt(URI url, OffsetDateTime timestamp) {
-        jdbcTemplate.update("update links set checked_at = ? where url = ?", timestamp, url.toString());
+        jdbcTemplate.update("update link set checked_at = ? where url = ?", timestamp, url.toString());
     }
 
     @Override
     public void updateUpdatedAt(URI url, OffsetDateTime timestamp) {
-        jdbcTemplate.update("update links set updated_at = ? where url = ?", timestamp, url.toString());
+        jdbcTemplate.update("update link set updated_at = ? where url = ?", timestamp, url.toString());
     }
 
     @Override
     public LinkDto get(URI url) {
         try {
             return jdbcTemplate.queryForObject(
-                GET_LINKS_QUERY + " WHERE links.url = ?",
+                GET_LINKS_QUERY + " WHERE link.url = ?",
                 ROW_MAPPER,
                 url.toString()
             );
@@ -103,12 +103,12 @@ public class JdbcLinkDao implements LinkDao {
         LinkDto linkDto = this.get(url);
 
         jdbcTemplate.update(
-            "delete from chats_links where chat_id = ? and link_id = ?",
+            "delete from chat_link where chat_id = ? and link_id = ?",
             chatId,
             this.get(url).getId()
         );
 
-        jdbcTemplate.update("delete from links where url = ?", url.toString());
+        jdbcTemplate.update("delete from link where url = ?", url.toString());
 
         return linkDto;
     }
