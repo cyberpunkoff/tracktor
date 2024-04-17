@@ -1,9 +1,11 @@
 package edu.java.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -15,10 +17,11 @@ import lombok.NoArgsConstructor;
 public class ChatEntity {
     @Id
     private Long id;
-    @ManyToMany(mappedBy = "trackedBy")
-    private List<LinkEntity> links;
+    @ManyToMany(mappedBy = "trackedBy", fetch = FetchType.EAGER)
+    private List<LinkEntity> links = new ArrayList<>();
 
-    public ChatEntity(long tgChatId) {
+    public ChatEntity(long id) {
+        this.id = id;
     }
 
     public Long getId() {

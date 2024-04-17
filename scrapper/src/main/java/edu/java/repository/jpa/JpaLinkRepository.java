@@ -2,7 +2,6 @@ package edu.java.repository.jpa;
 
 import edu.java.entity.LinkEntity;
 import java.net.URI;
-import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,15 +14,15 @@ public interface JpaLinkRepository extends JpaRepository<LinkEntity, Long> {
     @Query("SELECT l from LinkEntity l JOIN l.trackedBy c WHERE c.id = :id")
     List<LinkEntity> findByTrackedById(Long id);
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query("update LinkEntity set updatedAt = ?1 where url = ?2")
     void updateUpdatedAt(OffsetDateTime time, URI url);
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query("update LinkEntity set checkedAt = ?1 where url = ?2")
     void updateCheckedAt(OffsetDateTime time, URI url);
 
     LinkEntity findFirstByUrl(URI url);
 
-    List<LinkEntity> findByCheckedAtBefore(Timestamp before);
+    List<LinkEntity> findByCheckedAtBefore(OffsetDateTime before);
 }
