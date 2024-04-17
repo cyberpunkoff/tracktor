@@ -5,6 +5,7 @@ import edu.java.clients.bot.BotClient;
 import edu.java.configuration.ApplicationConfig;
 import edu.java.dto.LinkDto;
 import edu.java.service.LinkService;
+import edu.java.service.updater.LinkUpdaterService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +27,12 @@ public class LinkUpdaterScheduler {
             return;
         }
 
-        log.info("Updating links...");
-        List<LinkDto> linksToUpdate = linkService.listAllCheckedLaterThan(scheduler.forceCheckDelay());
-        List<LinkDto> updatedLinks = linkUpdaterService.updateLinks(linksToUpdate);
-        List<LinkUpdateRequest> updatesToSend = linkUpdaterService.createLinkUpdateRequests(updatedLinks);
+        log.info("Starting update scheduler...");
+
+        List<LinkDto> linksToUpdate = linkService.getLinksCheckedDurationAgo(scheduler.forceCheckDelay());
+        List<LinkUpdateRequest> updatesToSend = linkUpdaterService.createUpdateRequests(linksToUpdate);
         updatesToSend.forEach(botClient::sendUpdate);
+
+        log.info("Update scheduler done");
     }
 }

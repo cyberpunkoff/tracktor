@@ -12,8 +12,10 @@ public class LinkUpdaterService implements LinkUpdater {
 
     @Override
     public int update(LinkUpdateRequest linkUpdateRequest) {
-        String text = "Link " + linkUpdateRequest.url() + " updated!";
-        linkUpdateRequest.tgChatIds().stream().forEach(chatId -> messageSender.sendMessage(chatId, text));
+        String text = linkUpdateRequest.description() + "\nLink: " + linkUpdateRequest.url();
+        linkUpdateRequest.tgChatIds().forEach(
+            chatId -> messageSender.sendMessageWithoutLinkPreview(chatId, text)
+        );
         return linkUpdateRequest.tgChatIds().size();
     }
 }

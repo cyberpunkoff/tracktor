@@ -18,6 +18,9 @@ spring:
     import: optional:file:.env[.properties]
   jpa:
     show-sql: true
+  jackson:
+    deserialization:
+      READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE: true
 
   datasource:
     url: jdbc:postgresql://localhost:5432/scrapper
