@@ -1,4 +1,4 @@
-package edu.java.configuration;
+package edu.java.bot.configuration;
 
 import java.time.Duration;
 import java.util.List;

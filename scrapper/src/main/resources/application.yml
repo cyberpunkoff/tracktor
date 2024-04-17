@@ -13,6 +13,32 @@ app:
 
   database-access-type: jdbc
 
+retry-config:
+  retries:
+    - client: github
+      type: linear
+      max-attempts: 1
+      step: 2
+      delay: 2s
+      codes:
+        - 500
+    - client: stackoverflow
+      type: exponential
+      max-attempts: 1
+      step: 2
+      delay: 2s
+      codes:
+        - 502
+    - client: bot
+      type: exponential
+      max-attempts: 1
+      step: 2
+      delay: 2s
+      codes:
+        - 502
+
+
+
 spring:
   application:
     name: scrapper
