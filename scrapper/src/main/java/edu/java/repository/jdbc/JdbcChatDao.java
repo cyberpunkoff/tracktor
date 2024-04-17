@@ -20,17 +20,17 @@ public class JdbcChatDao implements ChatDao {
 
     @Override
     public List<Chat> findAll() {
-        return jdbcTemplate.query("select * from chats", ROW_MAPPER);
+        return jdbcTemplate.query("select * from chat", ROW_MAPPER);
     }
 
     @Override
     public void add(Chat chat) {
-        jdbcTemplate.update("insert into chats (chat_id) values (?)", chat.getChatId());
+        jdbcTemplate.update("insert into chat (id) values (?)", chat.getChatId());
     }
 
     @Override
     public void remove(Chat chat) {
-        jdbcTemplate.update("delete from chats where chat_id = ?", chat.getChatId());
+        jdbcTemplate.update("delete from chat where id = ?", chat.getChatId());
 
     }
 }
