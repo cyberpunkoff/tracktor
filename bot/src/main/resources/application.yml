@@ -17,16 +17,6 @@ spring:
     caffeine:
       spec: maximumSize=100000,expireAfterAccess=3600s
 
-retry-config:
-  retries:
-    - client: scrapper
-      type: linear
-      max-attempts: 1
-      step: 2
-      delay: 2s
-      codes:
-        - 500
-
   kafka:
     consumer:
       bootstrap-servers: localhost:29092
@@ -36,7 +26,7 @@ retry-config:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: "*"
-        spring.json.value.default.type: edu.java.bot.dto.request.LinkUpdate
+        spring.json.value.default.type: edu.java.LinkUpdateRequest
     producer:
       bootstrap-servers: localhost:29092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -44,6 +34,16 @@ retry-config:
       properties:
         spring.json.add.type.headers: false
     bootstrap-servers: localhost:29092
+
+retry-config:
+  retries:
+    - client: scrapper
+      type: linear
+      max-attempts: 1
+      step: 2
+      delay: 2s
+      codes:
+        - 500
 
 bucket4j:
   enabled: true
