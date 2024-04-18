@@ -5,6 +5,7 @@ import edu.java.configuration.ApplicationConfig;
 import edu.java.dto.LinkDto;
 import edu.java.sender.UpdateSender;
 import edu.java.service.LinkService;
+import edu.java.service.updater.LinkUpdaterService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
