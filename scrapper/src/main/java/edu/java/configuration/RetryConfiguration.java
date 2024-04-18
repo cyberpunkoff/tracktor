@@ -1,40 +1,21 @@
 package edu.java.configuration;
 
-import edu.java.clients.LinearRetry;
-import org.springframework.data.util.ReactiveWrappers;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
-import reactor.core.Exceptions;
-import reactor.core.publisher.Flux;
-import reactor.util.retry.Retry;
-import reactor.util.retry.RetryBackoffSpec;
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
-public class RetryConfiguration {
-
-    public static final int MAX_ATTEMPTS = 5;
-    public static final Duration FIXED_DELAY = Duration.ofSeconds(10);
-
-    void test() {
-//        Retry.fixedDelay(MAX_ATTEMPTS, FIXED_DELAY).fi;
-    }
-
-    private boolean filterError(Throwable throwable, List<Integer> codes) {
-        return throwable instanceof WebClientResponseException &&
-            codes.contains(((WebClientResponseException) throwable).getStatusCode().value());
-    }
-
-    RetryBackoffSpec createRetryPolicy(ApplicationConfig.RetryBackoffPolicy type, List<Integer> codes) {
-        RetryBackoffSpec retryBackoffSpec = null;
-
-        switch (type) {
-            case CONSTANT -> retryBackoffSpec = Retry.fixedDelay(MAX_ATTEMPTS, FIXED_DELAY);
-            case EXPONENT -> retryBackoffSpec = Retry.backoff(MAX_ATTEMPTS, FIXED_DELAY);
-            case LINEAR -> retryBackoffSpec = new LinearRetry(FIXED_DELAY, MAX_ATTEMPTS);
-        }
-
-        retryBackoffSpec = retryBackoffSpec.filter(error -> filterError(error, codes));
-
-        return retryBackoffSpec;
+@ConfigurationProperties(prefix = "retry-config", ignoreUnknownFields = false)
+public record RetryConfiguration(
+    List<RetryInfo> retries
+) {
+    public record RetryInfo(
+        String client,
+        String type,
+        int maxAttempts,
+        long step,
+        Duration delay,
+        Set<Integer> codes
+    ) {
     }
 }

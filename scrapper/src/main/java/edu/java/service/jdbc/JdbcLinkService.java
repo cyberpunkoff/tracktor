@@ -13,10 +13,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
 @RequiredArgsConstructor
 public class JdbcLinkService implements LinkService {
     private final LinkDao linkRepository;
@@ -45,7 +43,7 @@ public class JdbcLinkService implements LinkService {
 
     @Override
     @Transactional
-    public List<LinkDto> listAllCheckedLaterThan(Duration duration) {
+    public List<LinkDto> getLinksCheckedDurationAgo(Duration duration) {
         return linkRepository.findAllCheckedLaterThan(duration);
     }
 

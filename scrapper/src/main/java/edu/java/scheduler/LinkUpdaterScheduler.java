@@ -1,7 +1,6 @@
 package edu.java.scheduler;
 
 import edu.java.LinkUpdateRequest;
-import edu.java.clients.bot.BotClient;
 import edu.java.configuration.ApplicationConfig;
 import edu.java.dto.LinkDto;
 import edu.java.sender.UpdateSender;
@@ -27,9 +26,12 @@ public class LinkUpdaterScheduler {
             return;
         }
 
-        log.info("Updating links...");
-        List<LinkDto> linksToUpdate = linkService.listAllCheckedLaterThan(scheduler.forceCheckDelay());
-        List<LinkUpdateRequest> updatesToSend = linkUpdaterService.updateLinks(linksToUpdate);
+        log.info("Starting update scheduler...");
+
+        List<LinkDto> linksToUpdate = linkService.getLinksCheckedDurationAgo(scheduler.forceCheckDelay());
+        List<LinkUpdateRequest> updatesToSend = linkUpdaterService.createUpdateRequests(linksToUpdate);
         updatesToSend.forEach(updateSender::send);
+
+        log.info("Update scheduler done");
     }
 }

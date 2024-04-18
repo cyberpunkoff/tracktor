@@ -8,7 +8,7 @@ public class ExampleTest extends IntegrationEnvironment {
     @SneakyThrows
     void exampleTest() {
         var connection = POSTGRES.createConnection("");
-        var result = connection.prepareStatement("SELECT * from chats").executeQuery();
+        var result = connection.prepareStatement("SELECT * from chat").executeQuery();
         System.out.println(result.getMetaData());
     }
 }

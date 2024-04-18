@@ -24,7 +24,7 @@ public interface LinkDao {
         Map<Long, LinkDto> linkById = new HashMap<>();
 
         while (resultSet.next()) {
-            Long chatId = resultSet.getLong("chat_id");
+            Long chatId = resultSet.getLong("id");
 
             Long id = resultSet.getLong("id");
             Timestamp updatedAt = resultSet.getTimestamp(UPDATED_AT_LABEL);

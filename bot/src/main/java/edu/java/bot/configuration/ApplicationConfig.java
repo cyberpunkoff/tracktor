@@ -11,6 +11,8 @@ public record ApplicationConfig(
     String telegramToken,
     @NotEmpty
     String topicName,
-    boolean useQueue
+    boolean useQueue,
+    @NotEmpty
+    String scrapperUrl
 ) {
 }

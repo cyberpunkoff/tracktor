@@ -1,5 +1,6 @@
 app:
   telegram-token: ${TELEGRAM_TOKEN}
+  scrapper-url: http://127.0.0.1:8080
   topic-name: "my-topic"
   use-queue: true
 
@@ -15,6 +16,16 @@ spring:
       - rate-limit-buckets
     caffeine:
       spec: maximumSize=100000,expireAfterAccess=3600s
+
+retry-config:
+  retries:
+    - client: scrapper
+      type: linear
+      max-attempts: 1
+      step: 2
+      delay: 2s
+      codes:
+        - 500
 
   kafka:
     consumer:

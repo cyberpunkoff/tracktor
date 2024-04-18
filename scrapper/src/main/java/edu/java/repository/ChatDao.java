@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 public interface ChatDao {
     RowMapper<Chat> ROW_MAPPER = (ResultSet resultSet, int rowNum) -> new Chat(
-        resultSet.getLong("chat_id")
+        resultSet.getLong("id")
     );
 
     List<Chat> findAll();
