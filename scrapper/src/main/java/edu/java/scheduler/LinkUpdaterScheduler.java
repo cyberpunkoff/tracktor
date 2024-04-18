@@ -4,6 +4,7 @@ import edu.java.LinkUpdateRequest;
 import edu.java.clients.bot.BotClient;
 import edu.java.configuration.ApplicationConfig;
 import edu.java.dto.LinkDto;
+import edu.java.sender.UpdateSender;
 import edu.java.service.LinkService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LinkUpdaterScheduler {
     private final LinkService linkService;
-    private final BotClient botClient;
+    private final UpdateSender updateSender;
     private final LinkUpdaterService linkUpdaterService;
     private final ApplicationConfig.Scheduler scheduler;
 
@@ -29,6 +30,6 @@ public class LinkUpdaterScheduler {
         log.info("Updating links...");
         List<LinkDto> linksToUpdate = linkService.listAllCheckedLaterThan(scheduler.forceCheckDelay());
         List<LinkUpdateRequest> updatesToSend = linkUpdaterService.updateLinks(linksToUpdate);
-        updatesToSend.forEach(botClient::sendUpdate);
+        updatesToSend.forEach(updateSender::send);
     }
 }
