@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Primary
 public class JdbcLinkDao implements LinkDao {
     private static final String GET_LINKS_QUERY =
-        "select link.id, url, updated_at, checked_at, chat.id from link "
+        "select link.id, url, updated_at, checked_at, chat.id as chat_id from link "
             + "JOIN chat_link ON link.id = chat_link.link_id "
             + "JOIN chat ON chat_link.chat_id = chat.id";
 
