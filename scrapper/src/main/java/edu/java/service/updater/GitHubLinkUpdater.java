@@ -8,10 +8,11 @@ import edu.java.dto.LinkDto;
 import edu.link.links.GitHubLink;
 import edu.link.links.Link;
 import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class GitHubLinkUpdater extends LinkUpdater {
     private OffsetDateTime updatedAt;
     private final GitHubClient gitHubClient;
@@ -27,12 +28,14 @@ public class GitHubLinkUpdater extends LinkUpdater {
         this.link = link;
 
         GitHubLink gitHubLink = (GitHubLink) Link.parse(link.getUrl().toString());
-        OffsetDateTime oldUpdatedAt = link.getUpdatedAt().toLocalDateTime().atOffset(ZoneOffset.UTC);
+        OffsetDateTime oldUpdatedAt = link.getUpdatedAt().toLocalDateTime().atOffset(OffsetDateTime.now().getOffset());
 
         updatedAt = OffsetDateTime.MIN;
         List<EventResponse> events = gitHubClient.fetchEvents(gitHubLink.getUserName(), gitHubLink.getRepoName());
 
         for (EventResponse event : events) {
+            log.debug("Old updated at is {} and new is {}", oldUpdatedAt, event.createdAt());
+            log.debug("New is after old: {}", event.createdAt().isAfter(oldUpdatedAt));
             if (event.createdAt().isAfter(oldUpdatedAt)) {
                 updates.add(createLinkUpdateRequest(event));
             }
