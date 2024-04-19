@@ -57,7 +57,7 @@ public class ClientConfiguration {
                 "bot",
                 retryConfiguration
             ))),
-            applicationConfig.client().gitHub().baseUrl()
+            applicationConfig.client().bot().baseUrl()
         );
     }
 }
