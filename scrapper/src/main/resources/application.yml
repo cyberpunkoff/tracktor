@@ -5,6 +5,8 @@ app:
       token: ${GITHUB_TOKEN}
     stack-overflow:
       base-url: https://api.stackexchange.com/2.3
+    bot:
+      base-url: http://localhost:8090/
 
   scheduler:
     enable: true
@@ -14,7 +16,7 @@ app:
   database-access-type: jdbc
 
   topic: "my-topic"
-  use-queue: true
+  use-queue: false
 
 retry-config:
   retries:
@@ -45,7 +47,7 @@ management:
     tags:
       application: ${spring.application.name}
   server:
-    port: 8091
+    port: 8081
   endpoints:
     web:
       base-path: /
@@ -105,7 +107,7 @@ bucket4j:
             unit: minutes
 
 server:
-  port: 8083
+  port: 8080
 
 springdoc:
   swagger-ui:
