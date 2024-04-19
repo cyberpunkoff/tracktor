@@ -10,15 +10,20 @@ import liquibase.database.jvm.JdbcConnection;
 import liquibase.resource.DirectoryResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import lombok.SneakyThrows;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.JdbcDatabaseContainer;
+import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
+@DirtiesContext
 @Testcontainers
 public abstract class IntegrationEnvironment {
     public static PostgreSQLContainer<?> POSTGRES;
+    public static KafkaContainer KAFKA;
 
     static {
         POSTGRES = new PostgreSQLContainer<>("postgres:15")
@@ -28,6 +33,9 @@ public abstract class IntegrationEnvironment {
         POSTGRES.start();
 
         runMigrations(POSTGRES);
+
+        KAFKA = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.6.0"));
+        KAFKA.start();
     }
 
     @SneakyThrows
@@ -39,6 +47,13 @@ public abstract class IntegrationEnvironment {
 
         Liquibase liquibase = new Liquibase("master.xml", changelogDir, db);
         liquibase.update(new Contexts(), new LabelExpression());
+    }
+
+    @DynamicPropertySource
+    static void kafkaProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.kafka.bootstrap-servers", KAFKA::getBootstrapServers);
+        registry.add("spring.kafka.producer.bootstrap-servers", KAFKA::getBootstrapServers);
+        registry.add("app.use-queue", () -> true);
     }
 
     @DynamicPropertySource

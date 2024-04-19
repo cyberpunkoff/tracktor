@@ -31,7 +31,7 @@ public class ChatDaoTest extends IntegrationEnvironment {
 
         chatDao.add(chat);
 
-        Long insertedId = jdbcTemplate.queryForObject("SELECT chat_id FROM chats LIMIT 1", Long.class);
+        Long insertedId = jdbcTemplate.queryForObject("SELECT id FROM chat LIMIT 1", Long.class);
 
         assertThat(insertedId).isEqualTo(chat.getChatId());
     }
@@ -43,12 +43,12 @@ public class ChatDaoTest extends IntegrationEnvironment {
     void removeTest() {
         Chat chat = new Chat(123L);
 
-        jdbcTemplate.update("INSERT INTO chats values (?)", chat.getChatId());
+        jdbcTemplate.update("INSERT INTO chat values (?)", chat.getChatId());
 
         chatDao.remove(chat);
 
         assertThatExceptionOfType(EmptyResultDataAccessException.class).isThrownBy(
-            () -> jdbcTemplate.queryForObject("SELECT chat_id FROM chats", Long.class)
+            () -> jdbcTemplate.queryForObject("SELECT id FROM chat", Long.class)
         );
     }
 
@@ -60,8 +60,8 @@ public class ChatDaoTest extends IntegrationEnvironment {
         Chat chat = new Chat(123L);
         Chat otherChat = new Chat(124L);
 
-        jdbcTemplate.update("INSERT INTO chats values (?)", chat.getChatId());
-        jdbcTemplate.update("INSERT INTO chats values (?)", otherChat.getChatId());
+        jdbcTemplate.update("INSERT INTO chat values (?)", chat.getChatId());
+        jdbcTemplate.update("INSERT INTO chat values (?)", otherChat.getChatId());
 
         List<Chat> chats = chatDao.findAll();
 

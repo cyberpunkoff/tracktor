@@ -11,6 +11,37 @@ app:
     interval: 10s
     force-check-delay: 30s
 
+  database-access-type: jdbc
+
+  topic: "my-topic"
+  use-queue: true
+
+retry-config:
+  retries:
+    - client: github
+      type: linear
+      max-attempts: 1
+      step: 2
+      delay: 2s
+      codes:
+        - 500
+    - client: stackoverflow
+      type: exponential
+      max-attempts: 1
+      step: 2
+      delay: 2s
+      codes:
+        - 502
+    - client: bot
+      type: exponential
+      max-attempts: 1
+      step: 2
+      delay: 2s
+      codes:
+        - 502
+
+
+
 spring:
   application:
     name: scrapper
@@ -32,6 +63,34 @@ spring:
 
   liquibase:
     enabled: false
+
+  cache:
+    cache-names:
+      - rate-limit-buckets
+    caffeine:
+      spec: maximumSize=100000,expireAfterAccess=3600s
+
+  kafka:
+    producer:
+      bootstrap-servers: localhost:29092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+    bootstrap-servers: localhost:29092
+
+bucket4j:
+  enabled: true
+  filters:
+  - cache-name: rate-limit-buckets
+    url: .*
+    http-status-code: TOO_MANY_REQUESTS
+    rate-limits:
+      - cache-key: getRemoteAddr()
+        bandwidths:
+          - capacity: 100
+            time: 1
+            unit: minutes
 
 server:
   port: 8083

@@ -2,10 +2,10 @@ package edu.java.repository.jooqDao;
 
 import edu.java.dto.Chat;
 import edu.java.repository.ChatDao;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-import java.util.List;
 import static edu.java.repository.jooq.Tables.CHATS;
 import static org.jooq.impl.DSL.asterisk;
 

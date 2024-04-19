@@ -12,20 +12,24 @@ public record ApplicationConfig(
     @NotNull
     @Bean
     Scheduler scheduler,
-    AccessType accessType,
+    AccessType databaseAccessType,
     @NotNull
-    Client client
+    Client client,
+    String topic,
+    boolean useQueue
 ) {
     public record Scheduler(boolean enable, @NotNull Duration interval, @NotNull Duration forceCheckDelay) {
     }
 
+    public enum RetryBackoffPolicy { CONSTANT, LINEAR, EXPONENT }
+
     public enum AccessType { JDBC, JPA, JOOQ }
 
     public record Client(GitHub gitHub, StackOverflow stackOverflow) {
-        public record GitHub(String baseUrl, String token) {
+        public record GitHub(RetryBackoffPolicy retryPolicy, String baseUrl, String token) {
         }
 
-        public record StackOverflow(String baseUrl) {
+        public record StackOverflow(RetryBackoffPolicy retryPolicy, String baseUrl) {
         }
     }
 }

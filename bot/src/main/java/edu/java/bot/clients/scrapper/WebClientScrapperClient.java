@@ -4,6 +4,9 @@ import edu.java.AddLinkRequest;
 import edu.java.LinkResponse;
 import edu.java.ListLinksResponse;
 import edu.java.RemoveLinkRequest;
+import edu.java.bot.clients.retry.RetryFilterFactory;
+import edu.java.bot.configuration.RetryConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -16,12 +19,18 @@ public class WebClientScrapperClient implements ScrapperClient {
     private final static String TG_CHAT_HEADER = "Tg-Chat-Id";
     private final WebClient webClient;
 
-    public WebClientScrapperClient() {
-        this(DEFAULT_BASE_URL);
+    @Autowired
+    public WebClientScrapperClient(RetryConfiguration retryConfiguration) {
+        this(retryConfiguration, DEFAULT_BASE_URL);
     }
 
-    public WebClientScrapperClient(String baseUrl) {
-        this.webClient = WebClient.create(baseUrl);
+    public WebClientScrapperClient(RetryConfiguration retryConfiguration, String baseUrl) {
+        this.webClient = WebClient.builder()
+            .filter(RetryFilterFactory.createFilter(RetryFilterFactory.createRetry(
+                "scrapper",
+                retryConfiguration
+            )))
+            .baseUrl(baseUrl).build();
     }
 
     @Override
