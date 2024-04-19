@@ -28,7 +28,7 @@ public class TestRateLimiting {
 
     @Test
     void testRateLimiting() throws Exception {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 500; i++) {
             mockMvc.perform(get("/links").header("Tg-Chat-Id", "123")).andExpect(status().isOk());
         }
 
