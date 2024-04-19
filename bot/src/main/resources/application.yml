@@ -35,6 +35,20 @@ spring:
         spring.json.add.type.headers: false
     bootstrap-servers: localhost:29092
 
+management:
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  server:
+    port: 8091
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: health, info, prometheus
+      path-mapping:
+        prometheus: metrics
+
 retry-config:
   retries:
     - client: scrapper

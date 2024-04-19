@@ -40,7 +40,19 @@ retry-config:
       codes:
         - 502
 
-
+management:
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  server:
+    port: 8091
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: health, info, prometheus
+      path-mapping:
+        prometheus: metrics
 
 spring:
   application:
