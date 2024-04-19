@@ -55,7 +55,8 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=grafana
     volumes:
-      - grafana:/etc/grafana/provisioning/datasources
+      - grafana_data:/var/lib/grafana
+      - grafana_conf:/etc/grafana/provisioning/datasources
 
   postgresql:
     image: postgres:16
@@ -91,7 +92,8 @@ volumes:
   zookeeper: { }
   kafka: { }
   prometheus: { }
-  grafana: { }
+  grafana_data: { }
+  grafana_conf: { }
 
 networks:
   backend: { }
