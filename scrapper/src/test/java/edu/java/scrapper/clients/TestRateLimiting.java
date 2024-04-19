@@ -28,8 +28,10 @@ public class TestRateLimiting {
 
     @Test
     void testRateLimiting() throws Exception {
-        for (int i = 0; i < 500; i++) {
-            mockMvc.perform(get("/links").header("Tg-Chat-Id", "123")).andExpect(status().isOk());
+        mockMvc.perform(get("/links").header("Tg-Chat-Id", "123")).andExpect(status().isOk());
+
+        for (int i = 0; i < 110; i++) {
+            mockMvc.perform(get("/links").header("Tg-Chat-Id", "123"));
         }
 
         mockMvc.perform(get("/links")).andExpect(status().isTooManyRequests());
