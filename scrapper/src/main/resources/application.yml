@@ -5,6 +5,8 @@ app:
       token: ${GITHUB_TOKEN}
     stack-overflow:
       base-url: https://api.stackexchange.com/2.3
+    bot:
+      base-url: http://localhost:8090/
 
   scheduler:
     enable: true
@@ -14,7 +16,7 @@ app:
   database-access-type: jdbc
 
   topic: "my-topic"
-  use-queue: true
+  use-queue: false
 
 retry-config:
   retries:
@@ -40,7 +42,19 @@ retry-config:
       codes:
         - 502
 
-
+management:
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  server:
+    port: 8081
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: health, info, prometheus
+      path-mapping:
+        prometheus: metrics
 
 spring:
   application:

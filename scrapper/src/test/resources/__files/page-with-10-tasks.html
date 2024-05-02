@@ -1,0 +1,4755 @@
+<!doctype html>
+<html>
+<head>
+  <title>Цифровой ассистент преподавателя</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="theme-color" content="#ffffff"/>
+  <link rel="icon" href="/static/logo.svg"/>
+  <link rel="stylesheet"
+        href="/static/css/bootstrap.min.css"/>
+  <script src="/static/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="/static/css/codemirror.min.css">
+  <style>
+  .logo {
+    width: 44px;
+    height: 44px;
+    position: absolute;
+    top: -28px;
+    background-color: white;
+    border-radius: 22px;
+    border: solid 1px #9ca9b5;
+  }
+  .logo-img {
+    width: 28px;
+    height: 28px;
+    margin-left: 7px;
+    margin-top: 8px;
+  }
+  .logo-container {
+    width: 24px;
+    position: relative;
+    margin-right: 30px;
+    display: inline-block;
+  }
+  .callout {
+    padding: 8px 20px;
+    margin: 10px 0;
+    border: 1px solid #eee;
+    border-left-width: 7px;
+    border-radius: 3px;
+  }
+  .callout p:last-child {
+    margin-bottom: 0;
+  }
+  .callout code {
+    border-radius: 3px;
+  }
+  .callout-success {
+    border-left-color: #28a745;
+  }
+  .callout-success div {
+    color: #28a745;
+    font-weight: bold;
+  }
+  .achievements-counter {
+    position: absolute;
+    font-size: 12px;
+    opacity: 0.7;
+    padding-left: 8px;
+    padding-top: 4px;
+  }
+  .department-img {
+    width: 150px;
+    margin-bottom: -20px;
+  }
+  </style>
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse container">
+            <ol class="breadcrumb bg-light pt-2 pb-2 m-0">
+                <li>
+                    <a class="logo-container text-decoration-none" href="/">
+                        <div class="logo">
+                            <img class="logo-img" src="/static/logo.svg"/>
+                        </div>
+                    </a>
+                </li>
+                
+    <li class="breadcrumb-item active" aria-current="page">
+         ИКБО-16-22
+    </li>
+
+            </ol>
+            <div class="d-block gap-3 col-12 col-lg-3 col-md-5 mt-2 mt-md-0">
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle w-100" id="dLabel" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        
+                            Войти
+                        
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel">
+                        <li>
+                            <a class="dropdown-item d-block" target="__blank" href="https://github.com/true-grue/kispython">
+                                <div>Материалы курса 📖</div>
+                                <small class="opacity-50">
+                                    Программирование на языке Python
+                                </small>
+                            </a>
+                        </li>
+                        
+                            <li><a class="dropdown-item" href="/rating">Рейтинг студентов</a></li>
+                            
+                                <li><a class="dropdown-item" href="/rating/groups">Рейтинг групп</a></li>
+                            
+                            
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/login">Войти</a></li>
+                            
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        
+  
+    <h5 class="card-title fw-bold">
+      Варианты заданий группы
+      <span class="text-primary" style="font-size: inherit">
+        ИКБО-16-22
+      </span>
+    </h5>
+    <h6 class="card-subtitle mb-3 text-muted">
+      Список вариантов. Нажмите на соответствующую Вашему варианту ячейку, чтобы перейти к отправке.
+    </h6>
+    <div class="mb-5" style="overflow-x:auto">
+      <table class="table table-sm table-bordered table-hover mb-0" style="min-width:650px">
+        <thead>
+          <tr>
+            <th scope="col" style="width:100px">Вариант</th>
+            
+              <td scope="col" class="text-center">
+                
+                  <a class="text-decoration-none"
+                    target="__blank"
+                    href="http://kispython.ru/docs/0/ИКБО-16-22.html">
+                    №1
+                  </a>
+                
+              </td>
+            
+              <td scope="col" class="text-center">
+                
+                  <a class="text-decoration-none"
+                    target="__blank"
+                    href="http://kispython.ru/docs/1/ИКБО-16-22.html">
+                    №2
+                  </a>
+                
+              </td>
+            
+              <td scope="col" class="text-center">
+                
+                  <a class="text-decoration-none"
+                    target="__blank"
+                    href="http://kispython.ru/docs/2/ИКБО-16-22.html">
+                    №3
+                  </a>
+                
+              </td>
+            
+              <td scope="col" class="text-center">
+                
+                  <a class="text-decoration-none"
+                    target="__blank"
+                    href="http://kispython.ru/docs/3/ИКБО-16-22.html">
+                    №4
+                  </a>
+                
+              </td>
+            
+              <td scope="col" class="text-center">
+                
+                  <a class="text-decoration-none"
+                    target="__blank"
+                    href="http://kispython.ru/docs/4/ИКБО-16-22.html">
+                    №5
+                  </a>
+                
+              </td>
+            
+              <td scope="col" class="text-center">
+                
+                  <a class="text-decoration-none"
+                    target="__blank"
+                    href="http://kispython.ru/docs/5/ИКБО-16-22.html">
+                    №6
+                  </a>
+                
+              </td>
+            
+              <td scope="col" class="text-center">
+                
+                  <a class="text-decoration-none"
+                    target="__blank"
+                    href="http://kispython.ru/docs/6/ИКБО-16-22.html">
+                    №7
+                  </a>
+                
+              </td>
+            
+              <td scope="col" class="text-center">
+                
+                  <a class="text-decoration-none"
+                    target="__blank"
+                    href="http://kispython.ru/docs/7/ИКБО-16-22.html">
+                    №8
+                  </a>
+                
+              </td>
+            
+              <td scope="col" class="text-center">
+                
+                  <a class="text-decoration-none"
+                    target="__blank"
+                    href="http://kispython.ru/docs/8/ИКБО-16-22.html">
+                    №9
+                  </a>
+                
+              </td>
+            
+              <td scope="col" class="text-center">
+                
+                  <a class="text-decoration-none"
+                    target="__blank"
+                    href="http://kispython.ru/docs/9/ИКБО-16-22.html">
+                    №10
+                  </a>
+                
+              </td>
+            
+          </tr>
+        </thead>
+        <tbody style="border-top: 0px">
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="26">
+                  1
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/0/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/0/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/0/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/0/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/0/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/0/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/0/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/0/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/0/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#ffe3ee"
+                    href="/group/23/variant/0/task/9">
+                    x
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="8">
+                  2
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/1/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/1/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/1/task/2">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/1/task/3">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/1/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/1/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/1/task/6">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/1/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/1/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/1/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="30">
+                  3
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/2/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/2/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/2/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/2/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/2/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/2/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/2/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/2/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/2/task/8">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/2/task/9">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="23">
+                  4
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/3/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/3/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/3/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/3/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/3/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/3/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/3/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/3/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/3/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/3/task/9">
+                    +
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="30">
+                  5
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/4/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/4/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/4/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/4/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/4/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/4/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/4/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/4/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/4/task/8">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/4/task/9">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="24">
+                  6
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/5/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/5/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/5/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/5/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/5/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/5/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/5/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/5/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/5/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/5/task/9">
+                    +
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="30">
+                  7
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/6/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/6/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/6/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/6/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/6/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/6/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/6/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/6/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/6/task/8">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/6/task/9">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="24">
+                  8
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/7/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/7/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/7/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/7/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/7/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/7/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/7/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/7/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/7/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/7/task/9">
+                    +
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="21">
+                  9
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/8/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/8/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/8/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/8/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/8/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/8/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/8/task/6">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/8/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/8/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/8/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="17">
+                  10
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/9/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/9/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/9/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/9/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/9/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/9/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/9/task/6">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/9/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/9/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/9/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="7">
+                  11
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/10/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/10/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/10/task/2">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/10/task/3">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/10/task/4">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/10/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/10/task/6">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/10/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/10/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/10/task/9">
+                    +
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="25">
+                  12
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/11/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/11/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/11/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/11/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/11/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/11/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/11/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/11/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/11/task/8">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/11/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="28">
+                  13
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/12/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/12/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/12/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/12/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/12/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/12/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/12/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/12/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/12/task/8">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/12/task/9">
+                    +
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="20">
+                  14
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/13/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/13/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/13/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/13/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/13/task/4">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/13/task/5">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/13/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/13/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/13/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/13/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="15">
+                  15
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/14/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/14/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/14/task/2">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/14/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/14/task/4">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/14/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/14/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/14/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/14/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/14/task/9">
+                    +
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="26">
+                  16
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/15/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/15/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/15/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/15/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/15/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/15/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/15/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/15/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/15/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/15/task/9">
+                    +
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="6">
+                  17
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/16/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/16/task/1">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/16/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/16/task/3">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/16/task/4">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/16/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/16/task/6">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/16/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/16/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/16/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="26">
+                  18
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/17/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/17/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/17/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/17/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/17/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/17/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/17/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/17/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/17/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/17/task/9">
+                    +
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="26">
+                  19
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/18/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/18/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/18/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/18/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/18/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/18/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/18/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/18/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/18/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/18/task/9">
+                    +
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  20
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/19/task/0">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/19/task/1">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/19/task/2">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/19/task/3">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/19/task/4">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/19/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/19/task/6">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/19/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/19/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/19/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="17">
+                  21
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/20/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/20/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/20/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/20/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/20/task/4">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/20/task/5">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/20/task/6">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/20/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/20/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/20/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="17">
+                  22
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/21/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/21/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/21/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/21/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/21/task/4">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/21/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/21/task/6">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/21/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/21/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/21/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  23
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/22/task/0">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/22/task/1">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/22/task/2">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/22/task/3">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/22/task/4">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/22/task/5">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/22/task/6">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/22/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/22/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/22/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="30">
+                  24
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/23/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/23/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/23/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/23/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/23/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/23/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/23/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/23/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/23/task/8">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/23/task/9">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  25
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/24/task/0">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/24/task/1">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/24/task/2">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/24/task/3">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/24/task/4">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/24/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/24/task/6">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/24/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/24/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/24/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="8">
+                  26
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/25/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/25/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/25/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/25/task/3">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/25/task/4">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/25/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/25/task/6">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/25/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/25/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/25/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="14">
+                  27
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/26/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/26/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/26/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/26/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/26/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        2
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/26/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/26/task/6">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/26/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/26/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/26/task/9">
+                    +
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="25">
+                  28
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/27/task/0">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/27/task/1">
+                    +
+                    
+                      <span class="achievements-counter">
+                        3
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/27/task/2">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/27/task/3">
+                    +
+                    
+                      <span class="achievements-counter">
+                        5
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/27/task/4">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/27/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/27/task/6">
+                    +
+                    
+                      <span class="achievements-counter">
+                        4
+                      </span>
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/27/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/27/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/27/task/9">
+                    +
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  29
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/28/task/0">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/28/task/1">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/28/task/2">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/28/task/3">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/28/task/4">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/28/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/28/task/6">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/28/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/28/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#ffe3ee"
+                    href="/group/23/variant/28/task/9">
+                    x
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  30
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/29/task/0">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/29/task/1">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/29/task/2">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/29/task/3">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/29/task/4">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/29/task/5">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/29/task/6">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/29/task/7">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#e3ffee"
+                    href="/group/23/variant/29/task/8">
+                    +
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:#ffe3ee"
+                    href="/group/23/variant/29/task/9">
+                    x
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  31
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/30/task/0">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/30/task/1">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/30/task/2">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/30/task/3">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/30/task/4">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/30/task/5">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/30/task/6">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/30/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/30/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/30/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  32
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/31/task/0">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/31/task/1">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/31/task/2">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/31/task/3">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/31/task/4">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/31/task/5">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/31/task/6">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/31/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/31/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/31/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  33
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/32/task/0">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/32/task/1">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/32/task/2">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/32/task/3">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/32/task/4">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/32/task/5">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/32/task/6">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/32/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/32/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/32/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  34
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/33/task/0">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/33/task/1">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/33/task/2">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/33/task/3">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/33/task/4">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/33/task/5">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/33/task/6">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/33/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/33/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/33/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  35
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/34/task/0">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/34/task/1">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/34/task/2">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/34/task/3">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/34/task/4">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/34/task/5">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/34/task/6">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/34/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/34/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/34/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  36
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/35/task/0">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/35/task/1">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/35/task/2">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/35/task/3">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/35/task/4">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/35/task/5">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/35/task/6">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/35/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/35/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/35/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  37
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/36/task/0">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/36/task/1">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/36/task/2">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/36/task/3">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/36/task/4">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/36/task/5">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/36/task/6">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/36/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/36/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/36/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  38
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/37/task/0">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/37/task/1">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/37/task/2">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/37/task/3">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/37/task/4">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/37/task/5">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/37/task/6">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/37/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/37/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/37/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  39
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/38/task/0">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/38/task/1">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/38/task/2">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/38/task/3">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/38/task/4">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/38/task/5">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/38/task/6">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/38/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/38/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/38/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+            <tr>
+              <td scope="col" style="border-bottom: 0; width:100px; padding: 0">
+                <span class="p-1 d-block" title="0">
+                  40
+                </span>
+              </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/39/task/0">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/39/task/1">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/39/task/2">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/39/task/3">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/39/task/4">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/39/task/5">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/39/task/6">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/39/task/7">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/39/task/8">
+                    -
+                    
+                  </a>
+                </td>
+              
+                <td scope="col" style="border-bottom: 0; padding: 0">
+                  <a class="d-block text-center text-decoration-none p-1 position-relative"
+                    style="background-color:inherit"
+                    href="/group/23/variant/39/task/9">
+                    -
+                    
+                  </a>
+                </td>
+              
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  
+
+    </div>
+
+
+</body>
+</html>

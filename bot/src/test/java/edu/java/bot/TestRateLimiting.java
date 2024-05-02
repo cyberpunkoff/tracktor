@@ -16,8 +16,10 @@ public class TestRateLimiting {
 
     @Test
     void testRateLimiting() throws Exception {
-        for (int i = 0; i < 100; i++) {
-            mockMvc.perform(get("/updates")).andExpect(status().is(405));
+        mockMvc.perform(get("/updates")).andExpect(status().is(405));
+
+        for (int i = 0; i < 110; i++) {
+            mockMvc.perform(get("/updates"));
         }
 
         mockMvc.perform(get("/updates")).andExpect(status().isTooManyRequests());

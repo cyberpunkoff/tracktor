@@ -25,11 +25,14 @@ public record ApplicationConfig(
 
     public enum AccessType { JDBC, JPA, JOOQ }
 
-    public record Client(GitHub gitHub, StackOverflow stackOverflow) {
+    public record Client(GitHub gitHub, StackOverflow stackOverflow, Bot bot) {
         public record GitHub(RetryBackoffPolicy retryPolicy, String baseUrl, String token) {
         }
 
         public record StackOverflow(RetryBackoffPolicy retryPolicy, String baseUrl) {
+        }
+
+        public record Bot(String baseUrl) {
         }
     }
 }
