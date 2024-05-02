@@ -13,6 +13,9 @@ app:
 
   database-access-type: jdbc
 
+  topic: "my-topic"
+  use-queue: true
+
 retry-config:
   retries:
     - client: github
@@ -66,6 +69,15 @@ spring:
       - rate-limit-buckets
     caffeine:
       spec: maximumSize=100000,expireAfterAccess=3600s
+
+  kafka:
+    producer:
+      bootstrap-servers: localhost:29092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+    bootstrap-servers: localhost:29092
 
 bucket4j:
   enabled: true
