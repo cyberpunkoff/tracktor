@@ -11,6 +11,8 @@ app:
     interval: 10s
     force-check-delay: 30s
 
+  database-access-type: jpa
+
 spring:
   application:
     name: scrapper
@@ -18,6 +20,8 @@ spring:
     import: optional:file:.env[.properties]
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: validate
   jackson:
     deserialization:
       READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE: true
@@ -32,7 +36,7 @@ spring:
     enabled: false
 
 server:
-  port: 8080
+  port: 8083
 
 springdoc:
   swagger-ui:

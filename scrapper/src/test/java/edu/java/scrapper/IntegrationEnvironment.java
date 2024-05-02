@@ -10,12 +10,14 @@ import liquibase.database.jvm.JdbcConnection;
 import liquibase.resource.DirectoryResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import lombok.SneakyThrows;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.JdbcDatabaseContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+@DirtiesContext
 @Testcontainers
 public abstract class IntegrationEnvironment {
     public static PostgreSQLContainer<?> POSTGRES;
