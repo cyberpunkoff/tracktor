@@ -1,21 +1,19 @@
 package edu.java.clients.bot;
 
 import edu.java.LinkUpdateRequest;
-import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
-@Component
 public class WebClientBotClient implements BotClient {
     private static final String DEFAULT_BASE_URL = "http://127.0.0.1:8090";
     private static final String UPDATES_ENDPOINT = "/updates";
     private final WebClient webClient;
 
     public WebClientBotClient() {
-        this(DEFAULT_BASE_URL);
+        this(WebClient.builder(), DEFAULT_BASE_URL);
     }
 
-    public WebClientBotClient(String baseUrl) {
-        this.webClient = WebClient.create(baseUrl);
+    public WebClientBotClient(WebClient.Builder builder, String baseUrl) {
+        this.webClient = builder.baseUrl(baseUrl).build();
     }
 
     @Override
